@@ -1,0 +1,31 @@
+
+  <div class="subscribe">
+
+    <div class="left">
+          <div class="texthead">
+            <h1>{% translate %}SUBSCRIBE TO SITE{% endtranslate %}</h1>
+            <p>{% translate %}Subscribe text.{% endtranslate %}</p>
+          </div><!--workedheade end-->
+    </div>
+
+      <div class="right">
+            <form class="subscribeus" id="ajax-subscribe" method="post" action="{{URL}}/form/addsubscriber">
+
+                    <div class="form-block msize">
+                      <input type="text" name="name" value="" placeholder="{% translate %}Your Name{% endtranslate %}..." required>
+                    </div>
+
+                    <div class="form-block msize">
+                      <input type="email" name="email" value="" placeholder="{% translate %}Your E-mail{% endtranslate %}..." required>
+                    </div>
+
+                    <div class="form-messages" id="subscribe-message"></div>
+                    <div class="form-block lsize">
+                      <input type="submit" name="name" value="{% translate %}Subscribe Me{% endtranslate %}">
+                    </div>
+            </form>
+            <div class="clear"></div>
+      </div>
+
+  <div class="clear"></div>
+  </div><!--center end-->

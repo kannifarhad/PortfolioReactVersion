@@ -1,0 +1,16 @@
+
+<div class="sochialshare">
+    {% set sharelink = URL ~ lang ~ '/posts/' ~ currenttype ~ '/' ~ fullstory.categorylist['0'] ~'/view/' ~ fullstory.slug %}
+    
+    <div class="sochialleft"><h2>{% translate %}Share in Social Networks{% endtranslate %}</h2></div>
+    <div class="sochialright">
+      <ul class="sochiallinks">
+        <li><a class="facebook" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u={{sharelink}}', 'newWin','width=600,height=600')" alt="Share On Facebook" ><span class="icons icon-facebook"></span> </a></li>
+        <li><a class="twitter" onclick="window.open('https://twitter.com/home?status={{sharelink}}','newWin','width=600,height=600')" alt="Share On Twitter" ><span class="icons icon-twitter"></span></a></li>
+        <li><a class="google" onclick="window.open('https://plus.google.com/share?url={{sharelink}}','newWin','width=600,height=600')" alt="Share On Google+"><span class="icons icon-google"></span></a></li>
+        <li><a class="vkontakte" onclick="window.open('http://vkontakte.ru/share.php?url={{sharelink}}','newWin','width=600,height=600')" alt="Share On VKontakte"><span class="icons icon-vkontakte"></span></a></li>
+        <li><a class="linkedin" onclick="window.open('https://www.linkedin.com/shareArticle?mini=true&url={{sharelink}}&summary=&source=','newWin','width=600,height=600')" alt="Share On Linkedin" ><span class="icons icon-linkedin"></span></a></li>
+      </ul>
+    </div>
+<div class="clear"></div>
+  </div>

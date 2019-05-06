@@ -1,0 +1,45 @@
+<div class="projectinsidehead">
+		<div class="headertop">
+			<div class="logoname"><span>Kanni Farhad</span></div>
+
+			{% set headrawmenu = 'insidemenu'|menuconstructor({'generate' : false, 'lang' : lang}) %}
+
+
+			<div class="headermenu">
+					<ul class="headmenu">
+						{% for menuli in headrawmenu %}
+						<li><a class="{% if currenttype in menuli.link %} active {% endif %}" href="{{menuli.link}}"><span class="icons {{menuli.icon}}"></span><span class="menutitle">{{menuli.name}}</span></a>
+								{% if menuli.children != null %}
+									<ul class="submenu">
+										{% for submenuli in menuli.children %}
+											<li><a href="{{submenuli.link}}"><span class="menutitle">{{submenuli.name}}</span></a>
+										{% endfor %}
+									</ul>
+								{% endif %}
+						</li>
+						{% endfor %}
+					</ul>
+			</div>
+
+			<!--
+			{% set headrawmenu = 'insidemenu'|menuconstructor({'generate' : 'true','menuclass': 'headmenu', 'icons': true, 'lang' : lang}) %}
+			<div class="headermenu">
+				{{headrawmenu|raw}}
+			</div>-->
+
+		<div class="clear"></div>
+		</div><!--headertop end-->
+
+		{% if categories != null %}
+					<div class="categories">
+						<a href='{{URL}}{{lang}}/posts/{{currenttype}}' class="{% if currentcategory == null %} active {% endif %}">{% translate %}All{% endtranslate %}</a>
+						{% for category in categories %}
+
+							{% if category.type == currenttype %}
+								<a href='{{URL}}{{lang}}/posts/{{currenttype}}/{{ category.slug }}' class="{% if currentcategory == category.slug %} active {% endif %}" data-filter="category.slug">{{ category.title }}</a>
+							{% endif %}
+						{% endfor %}
+
+					</div><!--categories end-->
+		{% endif	 %}
+</div><!--projectinsidehead end-->

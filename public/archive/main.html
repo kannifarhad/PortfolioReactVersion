@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+{% block metatags %}
+    <title>{{langlist[lang].sitetitle}}</title>
+    <meta name="description" content="{{config.description}}" />
+    <meta name="twitter:card" value="summary">
+    <meta property="og:title" content="{{config.title}}" />
+    <meta property="og:type" content="Home Page" />
+    <meta property="og:url" content="{{URL}}" />
+    <meta property="og:image" content="http://example.com/image.jpg" />
+    <meta property="og:description" content="{{config.description}}" />
+{% endblock %}
+
+    <link rel="stylesheet" type="text/css" href="{{URL}}views/site/css/style.css" media="all">
+    <link rel="stylesheet" type="text/css" href="{{URL}}views/site/fonts/font/stylesheet.css" media="all">
+    <link rel="stylesheet" type="text/css" href="{{URL}}views/site/css/jquery.fancybox.css?v=2.1.5" media="screen" />
+    <link rel="stylesheet" href="{{URL}}views/site/css/owl.carousel.css">
+    <link rel="stylesheet" href="{{URL}}views/site/css/owl.theme.css">
+</head>
+<body>
+<div class="wrapper">
+
+{% block content %}
+
+
+{% endblock %}
+
+
+{% include 'blocks/subscribe.html' %}
+{% include 'blocks/contactform.html' %}
+<div class="copyright">
+  <p>Powered by Darth Vader. All Rights Reserved © 2016</p>
+</div>
+</div><!--wrapper end-->
+
+<script type="text/javascript" src="{{URL}}views/site/js/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="{{URL}}views/site/js/jquery.mixitup.js"></script>
+<script type="text/javascript" src="{{URL}}views/site/js/jquery.fancybox.js?v=2.1.5"></script>
+<script type="text/javascript" src="{{URL}}views/site/js/owl.carousel.min.js"></script>
+<script type="text/javascript" src="{{URL}}views/site/js/custom.js"></script>
+<script type="text/javascript" src="{{URL}}views/site/js/loadmore.js"></script>
+<script type="text/javascript"  src='{{URL}}views/site/js/TweenMax.min.js'></script>
+<script type="text/javascript"  src='{{URL}}views/site/js/MorphSVGPlugin.min.js'></script>
+<script type="text/javascript"  src="{{URL}}views/site/js/index.js"></script>
+</body>
+</html>

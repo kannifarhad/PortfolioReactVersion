@@ -1,0 +1,20 @@
+<div id="contact">
+	<div class="contactwrapper">
+
+		<div class="contacthead">
+			<h1>{% translate %}DROP A MESSAGE{% endtranslate %}</h1>
+			<p>{% translate %}Use the form below to drop me an e-mail. You can be sure that your mail isn`t going to the inbox abyss, never to be seen or heard from again. I provide the exceptional service i`d want to experience myself. Old-fashioned phone calls work too{% endtranslate %} - (+994 51) 303 50 55</p>
+		</div><!--workedheade end-->
+		<div class="form-messages" id="contact-message"></div>
+		<form class="contactform" id="ajax-contact" method="post" action="{{lang}}/form/contact">
+			<label class="half"><input type="text" class="requireds" id="name" name="name" required placeholder="{% translate %}Your Name{% endtranslate %}..." /></label>
+			<label class="half"><input type="text" class="requireds" id="email" name="email" required placeholder="{% translate %}Your E-mail{% endtranslate %}..." /></label>
+			<label class="half"><input type="text" id="phone" name="phone" placeholder="{% translate %}Your Phone Number{% endtranslate %}..." /></label>
+			<label class="half"><input type="text" id="subjects" name="subjects" placeholder="{% translate %}Subject{% endtranslate %}..." /></label>
+			<textarea id="message" name="message" placeholder=""></textarea>
+
+			<input type="submit" value="{% translate %}Send Message{% endtranslate %}" />
+		</form><!--contactfomr end-->
+
+	</div>
+</div><!--contact end-->

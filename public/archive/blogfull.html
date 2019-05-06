@@ -1,0 +1,33 @@
+{% extends 'portfoliofull.html' %}
+
+{% block articlerelated %}
+				<div class="otherarticles">Other posts</div>
+				<div class="blogitemscont otherscont">
+
+					{% for item in related %}
+					{% set alignames = ['leftalign', 'rightalign'] %}
+
+						<div class="blogitem {{ cycle(alignames, loop.index0) }}">
+							<div class="imageblock">
+								<div class="blogcategory">
+									<span class="icons icon-{{item.category_slug}}"></span>
+								</div>
+								<a href="{{URL}}{{lang}}/posts/{{currenttype}}/{{item.category_slug}}/{{item.id}}-{{item.slug}}" class="imageitem"> <img src="{{URL}}{{item.thumb_image}}" /></a>
+							</div><!--image end-->
+
+							<div class="shortstory">
+								<h1><a href="{{URL}}{{lang}}/posts/{{currenttype}}/{{item.category_slug}}/{{item.id}}-{{item.slug}}">{{item.title}}</a></h1>
+								<span>{{item.date|date("d-M-Y")}}</span><div class="clear"></div>
+								<p>{{item.shortstory}}</p>
+							</div>
+
+							<div class="clear"></div>
+						</div><!--blogitem end-->
+					{% endfor %}
+
+				</div><!--blogitemscont end-->
+
+				<a href="#" class="sitebutton blogload">View More</a>
+			</div><!--projectfull end-->
+
+{% endblock %}

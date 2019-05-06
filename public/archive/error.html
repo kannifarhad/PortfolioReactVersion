@@ -1,0 +1,25 @@
+{% extends 'main.html' %}
+{% block metatags %}
+    <title>{% translate %}Error!{% endtranslate %}</title>
+    <meta name="description" content="{{error}}" />
+    <meta name="twitter:card" value="summary">
+
+{% endblock%}
+
+{% block content %}
+{% include 'blocks/innerheader.html' %}
+	<div class="projectwrapper">
+		<div class="projectcircles"></div>
+
+
+			<div class="projecttitle">
+				<h1>{% translate %}Error!{% endtranslate %}</h1>
+			</div>
+      <div class="projectstory">
+        <p>{{error}}</p>
+      </div><!--projectstory end-->
+
+			<div class="projectfull">
+	     </div><!--projectwrapper end-->
+  </div>
+{% endblock %}
