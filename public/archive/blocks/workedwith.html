@@ -1,21 +1,19 @@
 <div id="workedwith">
-  <div class="workedhead">
+  <div className="workedhead">
     <div>
-      {% set iworked = 'i-work-with'|getcatinfo({'type': 'category' , 'lang' : lang}) %}
-      <h1>{{iworked.title}}</h1>
-      <p>{{iworked.description}}</p>
+      <h1>iworked.title</h1>
+      <p>iworked.description</p>
     </div>
-  </div><!--workedheade end-->
-
-
-  {% set compaines = 'i-work-with'|getpostslist({'type' : 'category', 'limit': '20', 'lang' : lang}) %}
-  <div class="workwith">
-    <div class="logos">
-      {% for company in compaines %}
-      <a href="{{company.shortstory}}" target="_blank" alt="{{company.title}}"><img class="svg" src="{{company.thumb_image}}" /></a>
-      {% endfor %}
-    </div><!--logos end-->
   </div>
 
-  <div class="clear"></div>
-</div><!--workedwith end-->
+
+  <div className="workwith">
+    <div className="logos">
+       for company in compaines 
+      <a href="company.shortstory" target="_blank" alt="company.title"><img className="svg" src="company.thumb_image" /></a>
+       endfor 
+    </div>
+  </div>
+
+  <div className="clear"></div>
+</div>

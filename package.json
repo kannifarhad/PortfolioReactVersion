@@ -1,12 +1,12 @@
 {
   "name": "PortfolioReactVersion",
   "version": "1.0.0",
-  "description": "",
+  "description": "My portfolio react front version",
   "main": "index.js",
   "scripts": {
     "dev": "webpack",
     "build": "webpack --mode=production",
-    "server": "webpack-dev-server --open"
+    "start": "webpack-dev-server --open"
   },
   "repository": {
     "type": "git",

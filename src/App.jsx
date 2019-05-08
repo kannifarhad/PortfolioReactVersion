@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Header from './Components/Header';
+import Home from './Pages/Home';
 import Contact from './Components/Contact';
 
 
@@ -31,8 +31,7 @@ class App extends React.Component {
     render() {
         return(
             <div className="app">
-                <h1>Last test web server</h1>
-                <Header /> 
+                <Home /> 
                 <Contact config={this.state.config} />
             </div>
         )

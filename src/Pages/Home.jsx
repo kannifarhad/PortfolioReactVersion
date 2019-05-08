@@ -1,11 +1,11 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
-import HomeAbout from '../Components/HomeAbout';
-import HomePortfolio from '../Components/HomePortfolio';
 import HomeHeader from '../Components/HomeHeader';
-
-
+import HomeAbout from '../Components/HomeAbout';
+import HomeMyServices from '../Components/HomeMyServices';
+import HomePortfolio from '../Components/HomePortfolio';
+import Subscribe from '../Components/Subscribe';
+import WorkedWith from '../Components/WorkedWith';
 
 import config from '../data/config';
 import menu from '../data/menu';
@@ -39,10 +39,11 @@ class Home extends React.Component {
     render(){
         return(
             <div className="wrapper">
-                <HomeAbout />
-                <HomePortfolio />
-                <HomeHeader />
-               
+                {/* <HomeHeader /> */}
+                <HomeAbout aboutData={about} mySkills={skills} config={config} />
+                <HomeMyServices />
+                <WorkedWith />
+                <Subscribe />
             </div>
         )
     }
