@@ -5,16 +5,14 @@ function WorkedWith(props) {
         <div id="workedwith">
             <div className="workedhead">
                 <div>
-                <h1>iworked.title</h1>
-                <p>iworked.description</p>
+                <h1>{props.languageData['Defalut']}</h1>
+                <p>{props.languageData['Defalut']}</p>
                 </div>
             </div>
 
             <div className="workwith">
                 <div className="logos">
-                for company in compaines 
-                <a href="company.shortstory" target="_blank" alt="company.title"><img className="svg" src="company.thumb_image" /></a>
-                endfor 
+                    <a href="company.shortstory" target="_blank" alt="company.title"><img className="svg" src="company.thumb_image" /></a>
                 </div>
             </div><div className="clear"></div>
         </div>

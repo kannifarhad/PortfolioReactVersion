@@ -1,4 +1,4 @@
-const categories = [
+const categoriesList = [
     {   "id":1,
         "title": "Web Design",
         "slug": "webdesign",
@@ -15,4 +15,4 @@ const categories = [
         "type": "portfolio"
     }
 ];
-export default categories;
+export default categoriesList;

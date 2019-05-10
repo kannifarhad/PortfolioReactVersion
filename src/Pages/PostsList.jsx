@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 
 import types from '../data/types';
 
-import PortfolioList  from './Templates/PortfolioList';
-import BlogList  from './Templates/BlogList';
+import PortfolioList  from './Components/PortfolioList';
+import BlogList  from './Components/BlogList';
 import Error from './Error';
 
 class PostsCategory extends React.Component {

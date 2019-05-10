@@ -7,12 +7,10 @@ import HomePortfolio from '../Components/HomePortfolio';
 import Subscribe from '../Components/Subscribe';
 import WorkedWith from '../Components/WorkedWith';
 
-import config from '../data/config';
-import menu from '../data/menu';
+
 import about from '../data/about';
 import skills from '../data/skills';
 import portfolio from '../data/portfolio';
-import categories from '../data/categories';
 
 
 class Home extends React.Component {
@@ -20,17 +18,22 @@ class Home extends React.Component {
         super(props);
 
         this.state = {
-            categories: categories,
-            about: about,
-            menuData: menu,
-            skills: skills,
-            config: config,
-            portfolio: portfolio,
-            test: ''
+            config: this.props.config,
+            menuData: this.props.menu,
+            languageData: this.props.language,
+            categories: this.props.categories,
+            about: null,
+            skills: null,
+            portfolio: null
         }
     }
-    componentDidMount() {
-        console.log('Home Component did Mount');
+    componentWillMount() {
+        // console.log(this.props.config);
+        this.setState({
+            about,
+            skills,
+            portfolio
+        });
         /*axios.get('http://api.kanni.loc/main')
             .then(response => response.data())
             .then(test => this.setState({ test }))
@@ -39,11 +42,12 @@ class Home extends React.Component {
     render(){
         return(
             <div className="wrapper">
-                {/* <HomeHeader /> */}
-                <HomeAbout aboutData={about} mySkills={skills} config={config} />
+                <HomeHeader config={this.state.config} menuData={this.state.menuData['main-menu']}/>
+                <HomeAbout aboutData={this.state.about} mySkills={this.state.skills} config={this.state.config} />
                 <HomeMyServices />
-                <WorkedWith />
-                <Subscribe />
+                <HomePortfolio  categories={this.state.categories} portfolio={this.state.portfolio}/>
+                <WorkedWith languageData={this.state.languageData} />
+                <Subscribe  languageData={this.state.languageData} />
             </div>
         )
     }

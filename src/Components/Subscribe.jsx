@@ -5,24 +5,24 @@ function Subscribe(props) {
         <div className="subscribe">
             <div className="left">
                 <div className="texthead">
-                    <h1>SUBSCRIBE TO SITE</h1>
-                    <p>Subscribe text.</p>
+                    <h1>{props.languageData['SUBSCRIBE TO SITE']}</h1>
+                    <p>{props.languageData['Subscribe Text']}</p>
                 </div>
             </div>
             <div className="right">
                 <form className="subscribeus" id="ajax-subscribe" method="post" action="/form/addsubscriber">
                     <div className="form-block msize">
-                        <input type="text" name="name" defaultValue="" placeholder="Your Name..." required />
+                        <input type="text" name="name" defaultValue="" placeholder={props.languageData['Your Name...']} required />
                     </div>
 
                     <div className="form-block msize">
-                        <input type="email" name="email" defaultValue="" placeholder="Your E-mail..." required />
+                        <input type="email" name="email" defaultValue="" placeholder={props.languageData['Your E-mail...']} required />
                     </div>
 
                     <div className="form-messages" id="subscribe-message"></div>
 
                     <div className="form-block lsize">
-                        <input type="submit" name="name" defaultValue="Subscribe Me" />
+                        <input type="submit" name="name" value={props.languageData['Subscribe Me']} />
                     </div>
                 </form><div className="clear"></div>
             </div><div className="clear"></div>

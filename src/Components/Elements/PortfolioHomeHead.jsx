@@ -3,8 +3,7 @@ import React from 'react';
 
 class PortfolioHead extends React.Component {
     constructor(props) {
-        super();
-
+        super(props);
         this.props = props;
     }
 

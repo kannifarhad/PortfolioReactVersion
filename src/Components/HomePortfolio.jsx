@@ -1,14 +1,14 @@
 import React from 'react';
 
-import PortfolioList from './Elements/PortfolioList';
-import PortfolioHead from './Elements/PortfolioHead';
+import PortfolioItemsList from './Elements/PortfolioItemsList';
+import PortfolioHomeHead from './Elements/PortfolioHomeHead';
 
 function HomePortfolio(props){
     return (
         <div id="portfolio">
 			<div className="portfoliocont">
-                <PortfolioHead categories={props.categories} />
-                <PortfolioList items={props.portfolio} categories={props.categories}/>
+                <PortfolioHomeHead categories={props.categories} />
+                <PortfolioItemsList items={props.portfolio} categories={props.categories}/>
             </div>
         </div>
     )

@@ -6,7 +6,19 @@ const config = {
     "email":"farhad@kanni.pro",
     "linkedin":"http://facebook.com/",
     "facebook":"http://facebook.com/",
-    "resume":"#resumelink"
+    "resume":"#resumelink",
+    "langlist": [
+        {   
+            'id':  1,
+            'slug': 'en',
+            'title': 'English'
+        },
+        {   
+            'id': 2,
+            'slug': 'az',
+            'title': 'Azərbaycanca'
+        }
+    ]
 };
 
 export default config;

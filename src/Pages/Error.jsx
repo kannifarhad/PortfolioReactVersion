@@ -7,9 +7,9 @@ class Error extends React.Component {
     }
     render(){
         return(
-                <div>
-                    <p>ERROR PAGE NOT FOUND!</p>
-                </div>
+            <div>
+                <p>ERROR PAGE NOT FOUND!</p>
+            </div>
         )
     }
 }

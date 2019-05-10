@@ -25,6 +25,7 @@ class Posts extends React.Component {
         }
 
     }
+    
     getTypeInfo(typesList, typeSlug) {
         let typeinfo = typesList.filter(type=> ( type.slug == typeSlug ) ? type :'')[0];
         if (typeof(typeinfo) == 'undefined') {

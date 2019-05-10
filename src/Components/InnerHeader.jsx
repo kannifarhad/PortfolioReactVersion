@@ -1,12 +1,11 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
 import UlList from './Elements/UlLlist';
 
 import mainMenu from '../data/menu';
 import categories from '../data/categories';
 
-class PostsHead extends React.Component {
+class InnerHeader extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -53,4 +52,4 @@ class PostsHead extends React.Component {
     }
 }
 
-export default PostsHead;
+export default InnerHeader;

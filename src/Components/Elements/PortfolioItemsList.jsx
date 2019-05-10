@@ -1,9 +1,9 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
-
-class PortfolioList extends React.Component {
+class PortfolioItemsList extends React.Component {
     constructor(props) {
-        super();
+        super(props);
         this.props = props;
     }
 
@@ -18,11 +18,11 @@ class PortfolioList extends React.Component {
                                 <h2>{item.title}</h2>
                                 <p>
                                     {item.categories.map(categorie => {
-                                        return this.props.categories.map(cat => {if (cat.slug == categorie) return <a key={cat.id} href={`{{URL}}{{lang}}/posts/${cat.type}}/${cat.slug}`} target="_blank">{cat.title}</a> });                                             
+                                        return this.props.categories.map(cat => {if (cat.slug == categorie) return <Link key={cat.id} to={`{{URL}}{{lang}}/posts/${cat.type}}/${cat.slug}`} target="_blank">{cat.title}</Link> });                                             
                                                 }
                                     )}
                                 </p>
-                                <a className="readmore" href="{{URL}}{{lang}}/posts/{{post.type}}/{{poscategory}}/view/{{post.slug}}">View More</a>
+                                <Link className="readmore" to="{{URL}}{{lang}}/posts/{{post.type}}/{{poscategory}}/view/{{post.slug}}">View More</Link>
                             </div>
                         </div>
                         <img src={item.thumb} />
@@ -33,4 +33,4 @@ class PortfolioList extends React.Component {
     }
 }
 
-export default PortfolioList;
+export default PortfolioItemsList;

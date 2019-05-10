@@ -1,12 +1,20 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
-class Blog extends React.Component {
+class PortfolioFullstory extends React.Component {
     constructor(props) {
         super(props);
+        //console.log(props);
+    }
+    componentWillMount() {
+            /*axios.get('http://api.kanni.loc/main')
+                .then(response => response.data())
+                .then(test => this.setState({ test }))
+                .catch(error=> console.error(error.message));*/
+        
     }
     render(){
         return(
+
             <div className="projectwrapper" styles={{padding:"0px"}}>
                 <div className="projectcircles"></div>
 
@@ -27,4 +35,4 @@ class Blog extends React.Component {
     }
 }
 
-export default Blog;
+export default PortfolioFullstory;
