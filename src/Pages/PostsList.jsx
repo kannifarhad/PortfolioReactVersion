@@ -1,10 +1,8 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-
 import types from '../data/types';
 
-import PortfolioList  from './Components/PortfolioList';
-import BlogList  from './Components/BlogList';
+import PortfolioList  from '../Components/PortfolioList';
+import BlogList  from '../Components/BlogList';
 import Error from './Error';
 
 class PostsCategory extends React.Component {
@@ -17,8 +15,8 @@ class PostsCategory extends React.Component {
             categorySlug: this.props.match.params.categorySlug,
             typeinfo: null,
             listComponents : {
-                PortfolioList: PortfolioList,
-                BlogList: BlogList
+                portfolio: PortfolioList,
+                portfolio: BlogList
             },
             currentComponent: null
         }

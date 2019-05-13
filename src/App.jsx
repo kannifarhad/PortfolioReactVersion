@@ -3,14 +3,14 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
 import Home from './Pages/Home';
 import Contact from './Components/Contact';
+import InnerHeader from './Components/InnerHeader';
+import PostsList from './Pages/PostsList';
+import PostsPage from './Pages/PostsPage';
 import Error from './Pages/Error';
 
 import config from './data/config';
 import languageTexts from './data/language';
 import menusList from './data/menu';
-import about from './data/about';
-import skills from './data/skills';
-import portfolio from './data/portfolio';
 import categoriesList from './data/categories';
 
 class App extends React.Component {
@@ -20,23 +20,23 @@ class App extends React.Component {
         this.props = props;
 
         this.state = {
+            siteLang : null,
             config: null,
             menusList: null,
             languageTexts: null,
             categoriesList: null,
-            user: null
+            user: null,
+            URI: null
         }
-        this.languageChange = this.languageChange.bind(this);
-    }
-    languageChange(lang){
-
-    }
-    login(user) {
-        this.setState({user: true}, ()=>this.props.history.push('/blog'));
+        this.handleLangChange = this.handleLangChange.bind(this);
     }
 
-    logout() {
-        this.setState({user: null},  ()=>this.props.history.push('/'));
+    handleLangChange(lang){
+        console.log('App langchangeCalled: ' + lang);
+        this.setState({
+            siteLang: lang,
+            URI: config.URL + lang
+        });
     }
 
     componentWillMount() {
@@ -44,7 +44,9 @@ class App extends React.Component {
             config,
             menusList,
             languageTexts,
-            categoriesList
+            categoriesList,
+            siteLang: config.defaultLang,
+            URI: config.URL + config.defaultLang
         });
         /*axios.get('http://api.kanni.loc/main')
             .then(response => response.data())
@@ -55,14 +57,45 @@ class App extends React.Component {
     render() {
         return(
             <Router>
+                <Route path="/" render={ ( props ) => ( (props.location.pathname !== "/") && !(/\/([a-zA-Z]{2})([/]?)$/.test(props.location.pathname)) ?  
+                            <InnerHeader 
+                                language={this.state.languageTexts}  
+                                config={this.state.config} 
+                                menuData={this.state.menusList['inner-menu']}
+                                categories={this.state.categoriesList}
+                                lang={this.state.siteLang}
+                                handleAppLangChange={this.handleLangChange} {...props} /> 
+                                : "" )} />
+
                 <Switch>
-                    <Route exact path="/" render={ props => <Home 
-                                                                language={this.state.languageTexts}  
-                                                                config={this.state.config} 
-                                                                menu={this.state.menusList}
-                                                                categories={this.state.categoriesList}
-                                                                // onLangChange={this.languageChange(lang)}
-                                                                {...props} /> } />
+                    <Route exact path="/:lang?" 
+                            render={ props => <Home 
+                                                    language={this.state.languageTexts}  
+                                                    config={this.state.config} 
+                                                    menu={this.state.menusList}
+                                                    categories={this.state.categoriesList}
+                                                    lang={this.state.siteLang}
+                                                    handleAppLangChange={this.handleLangChange}
+                                                    {...props} /> } />
+
+                    <Route path="/:lang?/post/:category?" 
+                            render = {props => <PostsList 
+                                                    language={this.state.languageTexts}  
+                                                    config={this.state.config} 
+                                                    menu={this.state.menusList}
+                                                    categories={this.state.categoriesList}
+                                                    lang={this.state.siteLang}
+                                                    {...props} /> } />
+
+                    <Route path="/:lang?/post/:category/:postslug" 
+                            render = {props => <PostsPage 
+                                                    language={this.state.languageTexts}  
+                                                    config={this.state.config} 
+                                                    menu={this.state.menusList}
+                                                    categories={this.state.categoriesList}
+                                                    lang={this.state.siteLang}
+                                                    {...props} /> } />
+                                                    
                     <Route component={Error} />
                 </Switch>                   
                 <Contact config={this.state.config} />

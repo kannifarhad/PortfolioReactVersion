@@ -6,9 +6,7 @@ import HeaderAnimation from './Elements/HeaderAnimation';
 
 class HomeHeader extends React.Component {
     constructor(props){
-        super();
-
-        this.props = props;
+        super(props);
 
         this.state = {
             phoneMenuOpened: false
@@ -18,7 +16,7 @@ class HomeHeader extends React.Component {
     }
 
     handleLangChange(lang){
-        console.log('handleLangChange ' + lang);
+        this.props.langChanged(lang);
     }
 
     handleClick(event) {
@@ -35,12 +33,13 @@ class HomeHeader extends React.Component {
                 <div>
                     <div id="menu">
                         <UlList 
-                            LangClicked={this.handleLangChange} 
+                            lang={this.props.lang}
                             menu={this.props.menuData} 
                             config={this.props.config} 
                             listClass='menu' 
                             icons={false} 
-                            typeSlug={false} />
+                            LangClicked={this.handleLangChange} 
+                            />
                     </div>
                     
                     <div id="phonemenu">

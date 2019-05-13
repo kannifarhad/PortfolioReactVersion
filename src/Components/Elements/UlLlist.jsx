@@ -2,12 +2,11 @@ import React from 'react';
 import {NavLink} from 'react-router-dom';
 
 function UlLlist(props) {
+    // console.log(props.typeSlug);
     return(
         <ul className={props.listClass}>
             {props.menu.map(item =>  <li key={item.id}>
-                                        <NavLink 
-                                            className={(item.link.indexOf(props.typeSlug) > -1 ) ? 'active' : ''} 
-                                            to={item.link}>
+                                        <NavLink exact to={`/${props.lang}${item.link}`}  >
                                             {(props.icons) ? <span className={`icons ${item.icon}`}></span> : ''}
                                             <span className='menutitle'>{item.name}</span>
                                         </NavLink>
@@ -17,7 +16,7 @@ function UlLlist(props) {
                 (props.LangClicked) ? 
                     <li><a><span className='menutitle'>Language</span></a>
                         <ul className="submenu">
-                            {props.config.langlist.map(item =><li key={item.id}><a onClick={() => props.LangClicked(item.slug)} >{item.title}</a> </li>)}
+                            {props.config.langlist.map(item =><li key={item.id}><a onClick={() => props.LangClicked(item.slug)} ><span className='menutitle'>{item.title}</span></a> </li>)}
                         </ul>
                     </li>
                 : ''}

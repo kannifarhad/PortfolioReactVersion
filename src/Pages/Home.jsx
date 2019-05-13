@@ -16,7 +16,7 @@ import portfolio from '../data/portfolio';
 class Home extends React.Component {
     constructor(props) {
         super(props);
-
+        
         this.state = {
             config: this.props.config,
             menuData: this.props.menu,
@@ -26,13 +26,16 @@ class Home extends React.Component {
             skills: null,
             portfolio: null
         }
+        this.handleHomeLangChange = this.handleHomeLangChange.bind(this);
+    }
+    handleHomeLangChange(lang) {
+        this.props.handleAppLangChange(lang);
     }
     componentWillMount() {
-        // console.log(this.props.config);
         this.setState({
             about,
             skills,
-            portfolio
+            portfolio,
         });
         /*axios.get('http://api.kanni.loc/main')
             .then(response => response.data())
@@ -42,12 +45,12 @@ class Home extends React.Component {
     render(){
         return(
             <div className="wrapper">
-                <HomeHeader config={this.state.config} menuData={this.state.menuData['main-menu']}/>
-                <HomeAbout aboutData={this.state.about} mySkills={this.state.skills} config={this.state.config} />
+                <HomeHeader lang={this.props.lang} langChanged={this.handleHomeLangChange} config={this.state.config} menuData={this.state.menuData['main-menu']}/>
+                <HomeAbout lang={this.props.lang} aboutData={this.state.about} mySkills={this.state.skills} config={this.state.config} />
                 <HomeMyServices />
-                <HomePortfolio  categories={this.state.categories} portfolio={this.state.portfolio}/>
+                <HomePortfolio lang={this.props.lang} categories={this.state.categories} portfolio={this.state.portfolio}/>
                 <WorkedWith languageData={this.state.languageData} />
-                <Subscribe  languageData={this.state.languageData} />
+                <Subscribe languageData={this.state.languageData} />
             </div>
         )
     }

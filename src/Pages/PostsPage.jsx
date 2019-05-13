@@ -1,10 +1,9 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
 import types from '../data/types';
 
-import Portfolio  from './Templates/Portfolio';
-import Blog from './Templates/Blog';
+import PortfolioList  from '../Components/PortfolioList';
+import BlogList  from '../Components/BlogList';
 import Error from './Error';
 
 
