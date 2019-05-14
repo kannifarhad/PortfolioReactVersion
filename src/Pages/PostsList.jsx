@@ -10,43 +10,64 @@ class PostsCategory extends React.Component {
         super(props);
 
         this.state = {
-            page: this.props.match.params.page,
-            typeSlug: this.props.match.params.typeSlug,
-            categorySlug: this.props.match.params.categorySlug,
-            typeinfo: null,
+            page: null,
+            categorySlug: null,
+            typeSlug: null,
+            typeInfo: null,
+            currentComponent: null,
             listComponents : {
-                portfolio: PortfolioList,
-                portfolio: BlogList
+                PortfolioList: PortfolioList,
+                BlogList: BlogList
             },
-            currentComponent: null
         }
     }
 
-    getTypeInfo(typesList, typeSlug) {
-        let typeinfo = typesList.filter(type=> ( type.slug == typeSlug ) ? type :'')[0];
-        if (typeof(typeinfo) == 'undefined') {
+    getTypeInfo(typesList, categorySlug) {
+        console.log(categorySlug);
+        let typeInfo = typesList.filter(type=> ( type.slug == categorySlug ) ? type :'')[0];
+        //HERE GOES GETTING TYPEINFO FROM API AFTERWILLDO
+
+        if (typeof(typeInfo) == 'undefined') {
             let currentComponent = Error;
             this.setState({
-                typeinfo,
                 currentComponent
             });
-        } else  {
-            let currentComponent = this.state.listComponents[typeinfo.listComponent];
+        } else {
+            let currentComponent = this.state.listComponents[typeInfo.listComponent];
             this.setState({
-                typeinfo,
+                typeInfo,
                 currentComponent
             });
         }
-        return typeinfo;
+        return typeInfo;
     }
 
     componentWillMount() {
-        let typeInfo = this.getTypeInfo(types, this.state.typeSlug);
+        // this.setState({
+        //     page: this.props.match.params.page,
+        //     categorySlug: this.props.match.params.category,
+        // });
+        // this.getTypeInfo(types, this.props.match.params.category);
+        this.updateComponent();
+    }
+
+    componentDidUpdate(prevProps) {
+        if(prevProps.match.params.category !== this.props.match.params.category) {
+            this.updateComponent();
+        }
+    }
+
+    updateComponent() {
+        this.setState({
+            page: this.props.match.params.page,
+            categorySlug: this.props.match.params.category,
+        });
+        this.getTypeInfo(types, this.props.match.params.category);
     }
 
     render(){
-        let Component = this.state.currentComponent;
-        return <Component />
+        let ComponentName = this.state.currentComponent;
+        return <ComponentName typeInfo={this.state.typeInfo} {...this.props}/>
     }
 }
 

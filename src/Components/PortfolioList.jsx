@@ -9,16 +9,17 @@ class PortfolioList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            menu: mainMenu,
-            typeSlug: this.props.match.params.typeSlug,
-            categorySlug: this.props.match.params.categorySlug,
-            categoryList: null,
-            typeList: null
+            // menu: mainMenu,
+            // typeSlug: this.props.match.params.typeSlug,
+            // categorySlug: this.props.match.params.categorySlug,
+            // categoryList: null,
+            // typeList: null
         }
     }
     render() {
         return(
             <div>
+                <h1> POrtfolio JIASDAD ASDASD</h1>
                 {/* <PortfolioHomeHead categories={props.categories} />
                 <PortfolioItemsList items={props.portfolio} categories={props.categories}/> */}
             </div>

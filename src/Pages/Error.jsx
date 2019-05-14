@@ -7,8 +7,11 @@ class Error extends React.Component {
     }
     render(){
         return(
-            <div>
-                <h2>ERROR PAGE NOT FOUND!</h2>
+            <div className="projectwrapper">
+                <div className="projectcircles"></div>
+                <div className="projecttitle"> <h1>Error!</h1></div>
+                <div className="projectstory"> <p>This page doesn`t exists</p> </div>
+                <div className="projectfull"></div>
             </div>
         )
     }

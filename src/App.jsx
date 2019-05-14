@@ -78,7 +78,7 @@ class App extends React.Component {
                                                     handleAppLangChange={this.handleLangChange}
                                                     {...props} /> } />
 
-                    <Route path="/:lang?/post/:category?" 
+                    <Route path="/:lang?/:category" 
                             render = {props => <PostsList 
                                                     language={this.state.languageTexts}  
                                                     config={this.state.config} 
