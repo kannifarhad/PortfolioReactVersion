@@ -1,15 +1,17 @@
 import React from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
-import Home from './Pages/Home';
 import Contact from './Components/Contact';
 import InnerHeader from './Components/InnerHeader';
+import Subscribe from './Components/Subscribe';
+
+import Home from './Pages/Home';
 import PostsList from './Pages/PostsList';
 import PostsPage from './Pages/PostsPage';
 import Error from './Pages/Error';
 
 import config from './data/config';
-import languageTexts from './data/language';
+import languageData from './data/language';
 import menusList from './data/menu';
 import categoriesList from './data/categories';
 
@@ -23,7 +25,7 @@ class App extends React.Component {
             siteLang : null,
             config: null,
             menusList: null,
-            languageTexts: null,
+            languageData: null,
             categoriesList: null,
             user: null,
             URI: null
@@ -43,7 +45,7 @@ class App extends React.Component {
         this.setState({
             config,
             menusList,
-            languageTexts,
+            languageData,
             categoriesList,
             siteLang: config.defaultLang,
             URI: config.URL + config.defaultLang
@@ -55,11 +57,12 @@ class App extends React.Component {
     }
 
     render() {
+        console.log('App Render');
         return(
             <Router>
                 <Route path="/" render={ ( props ) => ( (props.location.pathname !== "/") && !(/\/([a-zA-Z]{2})([/]?)$/.test(props.location.pathname)) ?  
                             <InnerHeader 
-                                language={this.state.languageTexts}  
+                                languageData={this.state.languageData}  
                                 config={this.state.config} 
                                 menuData={this.state.menusList['inner-menu']}
                                 categories={this.state.categoriesList}
@@ -70,7 +73,7 @@ class App extends React.Component {
                 <Switch>
                     <Route exact path="/:lang?" 
                             render={ props => <Home 
-                                                    language={this.state.languageTexts}  
+                                                    languageData={this.state.languageData}  
                                                     config={this.state.config} 
                                                     menu={this.state.menusList}
                                                     categories={this.state.categoriesList}
@@ -78,18 +81,17 @@ class App extends React.Component {
                                                     handleAppLangChange={this.handleLangChange}
                                                     {...props} /> } />
 
-                    <Route path="/:lang?/:category" 
+                    <Route path="/:lang?/:type/:category?" 
                             render = {props => <PostsList 
-                                                    language={this.state.languageTexts}  
+                                                    languageData={this.state.languageData}  
                                                     config={this.state.config} 
                                                     menu={this.state.menusList}
-                                                    categories={this.state.categoriesList}
                                                     lang={this.state.siteLang}
                                                     {...props} /> } />
 
-                    <Route path="/:lang?/post/:category/:postslug" 
+                    <Route path="/:lang?/:type/:category/:postslug" 
                             render = {props => <PostsPage 
-                                                    language={this.state.languageTexts}  
+                                                    languageData={this.state.languageData}  
                                                     config={this.state.config} 
                                                     menu={this.state.menusList}
                                                     categories={this.state.categoriesList}
@@ -97,7 +99,8 @@ class App extends React.Component {
                                                     {...props} /> } />
                                                     
                     <Route component={Error} />
-                </Switch>                   
+                </Switch>       
+                <Subscribe languageData={this.state.languageData} />            
                 <Contact config={this.state.config} />
             </Router>
         )

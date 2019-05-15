@@ -4,7 +4,6 @@ import {Link} from 'react-router-dom';
 class PortfolioItemsList extends React.Component {
     constructor(props) {
         super(props);
-        this.props = props;
     }
 
     render(){
@@ -18,11 +17,11 @@ class PortfolioItemsList extends React.Component {
                                 <h2>{item.title}</h2>
                                 <p>
                                     {item.categories.map(categorie => {
-                                        return this.props.categories.map(cat => {if (cat.slug == categorie) return <Link key={cat.id} to={`{{URL}}{{lang}}/posts/${cat.type}}/${cat.slug}`} target="_blank">{cat.title}</Link> });                                             
+                                        return this.props.categories.map(cat => {if (cat.slug == categorie) return <Link key={cat.id} to={`/${cat.slug}`} target="_blank">{cat.title}</Link> });                                             
                                                 }
                                     )}
                                 </p>
-                                <Link className="readmore" to="{{URL}}{{lang}}/posts/{{post.type}}/{{poscategory}}/view/{{post.slug}}">View More</Link>
+                                <Link className="readmore" to={`/${this.props.lang}/${item.slug}`}>{this.props.languageData['View More']}</Link>
                             </div>
                         </div>
                         <img src={item.thumb} />

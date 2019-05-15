@@ -8,7 +8,7 @@ function HomePortfolio(props){
         <div id="portfolio">
 			<div className="portfoliocont">
                 <PortfolioHomeHead categories={props.categories} />
-                <PortfolioItemsList items={props.portfolio} categories={props.categories}/>
+                <PortfolioItemsList languageData={props.languageData} items={props.portfolio} categories={props.categories}/>
             </div>
         </div>
     )

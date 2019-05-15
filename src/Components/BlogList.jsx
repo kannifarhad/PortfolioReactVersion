@@ -3,9 +3,24 @@ import React from 'react';
 class BlogList extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            typeSlug: this.props.match.params.type,
+            categorySlug: this.props.match.params.category,
+            postsList: null,
+            pageInfo: this.props.pageInfo
+        }
     }
+
     render(){
         return(
+            // <div></div>
+            // <div className="categories">
+            //         <NavLink exact to={`/${this.props.lang}/${this.state.typeSlug}`}>All</NavLink>
+            //         {this.props.pageInfo.categories.map(item => 
+            //             <NavLink exact key={item.id} to={`/${this.props.lang}/${this.state.typeSlug}/${item.slug}`} data-filter={item.slug}>{item.title}</NavLink>
+            //             )}
+            // </div>
+
             <div className="blogitemscont">
                     <div className="blogitem leftalign">
                             <div className="imageblock">

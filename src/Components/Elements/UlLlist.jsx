@@ -2,11 +2,14 @@ import React from 'react';
 import {NavLink} from 'react-router-dom';
 
 function UlLlist(props) {
-    // console.log(props.typeSlug);
+    const checkActive = (match, location) => {
+        if(!match) return false;
+        return match.url != "/"+props.lang;
+    }
     return(
         <ul className={props.listClass}>
             {props.menu.map(item =>  <li key={item.id}>
-                                        <NavLink exact to={`/${props.lang}${item.link}`}  >
+                                        <NavLink isActive={checkActive} to={`/${props.lang}${item.link}`} >
                                             {(props.icons) ? <span className={`icons ${item.icon}`}></span> : ''}
                                             <span className='menutitle'>{item.name}</span>
                                         </NavLink>

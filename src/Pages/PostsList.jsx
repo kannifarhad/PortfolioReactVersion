@@ -1,4 +1,6 @@
 import React from 'react';
+import {NavLink} from 'react-router-dom';
+
 import types from '../data/types';
 
 import PortfolioList  from '../Components/PortfolioList';
@@ -12,8 +14,9 @@ class PostsCategory extends React.Component {
         this.state = {
             page: null,
             categorySlug: null,
-            typeSlug: null,
+            error: null,
             typeInfo: null,
+            categoryInfo: null,
             currentComponent: null,
             listComponents : {
                 PortfolioList: PortfolioList,
@@ -22,52 +25,67 @@ class PostsCategory extends React.Component {
         }
     }
 
-    getTypeInfo(typesList, categorySlug) {
-        console.log(categorySlug);
-        let typeInfo = typesList.filter(type=> ( type.slug == categorySlug ) ? type :'')[0];
-        //HERE GOES GETTING TYPEINFO FROM API AFTERWILLDO
-
-        if (typeof(typeInfo) == 'undefined') {
+    getTypeInfo(typesList, typeSlug, categorySlug) {
+        try{
+            let typeInfo = typesList.filter(type=> ( type.slug == typeSlug ) ? type :'')[0];
+            if (typeof(typeInfo) == 'undefined' || typeof(this.state.listComponents[typeInfo.listComponent]) == 'undefined' ) {
+                throw new Error('Page not found');
+            } else {
+                let pageInfo = typeInfo;
+                if(typeof(categorySlug) != 'undefined') {
+                    let categoryInfo = typeInfo.categories.filter(category=> ( category.slug == categorySlug ) ? category :'')[0];
+                    if (typeof(categoryInfo) == 'undefined') {
+                        throw new Error('Category not found');
+                   } else {
+                       pageInfo = categoryInfo;
+                   }
+                }
+                let currentComponent = this.state.listComponents[typeInfo.listComponent];
+                this.setState({
+                    typeInfo,
+                    pageInfo,
+                    typeSlug,
+                    categorySlug,
+                    currentComponent,
+                    page: this.props.match.params.page,
+                });
+            }
+        } catch(error) {
             let currentComponent = Error;
             this.setState({
-                currentComponent
-            });
-        } else {
-            let currentComponent = this.state.listComponents[typeInfo.listComponent];
-            this.setState({
-                typeInfo,
+                error,
                 currentComponent
             });
         }
-        return typeInfo;
+       
     }
 
     componentWillMount() {
-        // this.setState({
-        //     page: this.props.match.params.page,
-        //     categorySlug: this.props.match.params.category,
-        // });
-        // this.getTypeInfo(types, this.props.match.params.category);
-        this.updateComponent();
+        this.getTypeInfo(types, this.props.match.params.type, this.props.match.params.category);
     }
 
     componentDidUpdate(prevProps) {
-        if(prevProps.match.params.category !== this.props.match.params.category) {
-            this.updateComponent();
+        if(prevProps.match.params.type !== this.props.match.params.type || prevProps.match.params.category !== this.props.match.params.category) {
+            this.getTypeInfo(types, this.props.match.params.type, this.props.match.params.category);
         }
-    }
-
-    updateComponent() {
-        this.setState({
-            page: this.props.match.params.page,
-            categorySlug: this.props.match.params.category,
-        });
-        this.getTypeInfo(types, this.props.match.params.category);
     }
 
     render(){
         let ComponentName = this.state.currentComponent;
-        return <ComponentName typeInfo={this.state.typeInfo} {...this.props}/>
+        return (
+            <div>
+                {(this.state.typeInfo) ?
+                    <div className="categories">
+                        <NavLink exact to={`/${this.props.lang}/${this.state.typeSlug}`}>All</NavLink>
+                        {this.state.typeInfo.categories.map(item => 
+                            <NavLink key={item.id} to={`/${this.props.lang}/${this.state.typeSlug}/${item.slug}`} className={(this.state.categorySlug == item.slug) ? 'active' : ''} data-filter={item.slug}>{item.title}</NavLink>
+                            )}
+                    </div> 
+                : ''}
+                
+                <ComponentName typeInfo={this.state.typeInfo} pageInfo={this.state.pageInfo} {...this.props}/>
+            </div>
+        )
     }
 }
 

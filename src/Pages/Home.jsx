@@ -4,7 +4,6 @@ import HomeHeader from '../Components/HomeHeader';
 import HomeAbout from '../Components/HomeAbout';
 import HomeMyServices from '../Components/HomeMyServices';
 import HomePortfolio from '../Components/HomePortfolio';
-import Subscribe from '../Components/Subscribe';
 import WorkedWith from '../Components/WorkedWith';
 
 
@@ -20,7 +19,7 @@ class Home extends React.Component {
         this.state = {
             config: this.props.config,
             menuData: this.props.menu,
-            languageData: this.props.language,
+            languageData: this.props.languageData,
             categories: this.props.categories,
             about: null,
             skills: null,
@@ -48,9 +47,8 @@ class Home extends React.Component {
                 <HomeHeader lang={this.props.lang} langChanged={this.handleHomeLangChange} config={this.state.config} menuData={this.state.menuData['main-menu']}/>
                 <HomeAbout lang={this.props.lang} aboutData={this.state.about} mySkills={this.state.skills} config={this.state.config} />
                 <HomeMyServices />
-                <HomePortfolio lang={this.props.lang} categories={this.state.categories} portfolio={this.state.portfolio}/>
+                <HomePortfolio languageData={this.state.languageData} lang={this.props.lang} categories={this.state.categories} portfolio={this.state.portfolio}/>
                 <WorkedWith languageData={this.state.languageData} />
-                <Subscribe languageData={this.state.languageData} />
             </div>
         )
     }

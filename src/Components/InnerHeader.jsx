@@ -31,7 +31,6 @@ class InnerHeader extends React.Component {
     
     render() {
         return(
-
             <div className="projectinsidehead">
                 <div className="headertop">
                     <div className="logoname"><span>Kanni Farhad</span></div>
@@ -48,15 +47,7 @@ class InnerHeader extends React.Component {
 
                 <div className="clear"></div>
                 </div>
-
-                    <div className="categories">
-                        {/* <a href='{{URL}}{{lang}}/posts/{{currenttype}}' className={(this.state.categorySlug == null) ? 'active' : ''}>All</a>
-                        {this.state.categoryList.map(item => 
-                            <a key={item.id} href='{{URL}}{{lang}}/posts/{{currenttype}}/{{ category.slug }}' className={(this.state.categorySlug == item.slug) ? 'active' : ''} data-filter={item.slug}>{item.title}</a>
-                            )} */}
-                    </div>
-              
-        </div>
+            </div>
         )
     }
 }

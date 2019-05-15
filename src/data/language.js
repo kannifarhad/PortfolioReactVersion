@@ -1,4 +1,4 @@
-const languageTexts = {
+const languageData = {
     "SUBSCRIBE TO SITE" : "Sayta abunə ol",
     "Your Name...":"Your Name...",
     "Your E-mail...":"Your E-mail...",
@@ -7,7 +7,8 @@ const languageTexts = {
     "email":"farhad@kanni.pro",
     "linkedin":"http://facebook.com/",
     "facebook":"http://facebook.com/",
-    "resume":"#resumelink"
+    "resume":"#resumelink",
+    "View More": "Ətraflı Bax"
 };
 
-export default languageTexts;
+export default languageData;
