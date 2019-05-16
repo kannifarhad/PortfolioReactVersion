@@ -21,7 +21,7 @@ class PortfolioItemsList extends React.Component {
                                                 }
                                     )}
                                 </p>
-                                <Link className="readmore" to={`/${this.props.lang}/${item.slug}`}>{this.props.languageData['View More']}</Link>
+                                <Link className="readmore" to={`/${this.props.lang}/portfolio${(this.props.categorySlug !='portfolio') ? '/'+this.props.categorySlug : ''}/view/${item.slug}`}>{this.props.languageData['View More']}</Link>
                             </div>
                         </div>
                         <img src={item.thumb} />

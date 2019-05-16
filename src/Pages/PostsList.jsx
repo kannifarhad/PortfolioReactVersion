@@ -16,6 +16,7 @@ class PostsCategory extends React.Component {
             categorySlug: null,
             error: null,
             typeInfo: null,
+            typeSlug: null,
             categoryInfo: null,
             currentComponent: null,
             listComponents : {

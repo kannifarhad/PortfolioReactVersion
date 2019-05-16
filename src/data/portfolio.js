@@ -6,7 +6,7 @@ const portfolio = [
             "slug":"sport-marketing-group-responsive-website_58",
             "date":"2017-11-04 15:20:00",
             "shortstory":"",
-            "categories":["web-design", "programming"],
+            "categories":["webdesign", "programming"],
             "extras":{"color":"rgba(26,73,121,0.51)"}
         },
         {
@@ -26,7 +26,7 @@ const portfolio = [
             "slug":"logo_58",
             "date":"2017-11-04 15:20:00",
             "shortstory":"",
-            "categories":["web-design"],
+            "categories":["webdesign"],
             "extras":{"color":"rgba(126,7,121,0.51)"}
         },
         {

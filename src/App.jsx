@@ -80,7 +80,14 @@ class App extends React.Component {
                                                     lang={this.state.siteLang}
                                                     handleAppLangChange={this.handleLangChange}
                                                     {...props} /> } />
-
+                <Route path="/:lang?/:type/:category?/view/:post" 
+                            render = {props => <PostsPage 
+                                                    languageData={this.state.languageData}  
+                                                    config={this.state.config} 
+                                                    menu={this.state.menusList}
+                                                    categories={this.state.categoriesList}
+                                                    lang={this.state.siteLang}
+                                                    {...props} /> } />
                     <Route path="/:lang?/:type/:category?" 
                             render = {props => <PostsList 
                                                     languageData={this.state.languageData}  
@@ -89,14 +96,7 @@ class App extends React.Component {
                                                     lang={this.state.siteLang}
                                                     {...props} /> } />
 
-                    <Route path="/:lang?/:type/:category/:postslug" 
-                            render = {props => <PostsPage 
-                                                    languageData={this.state.languageData}  
-                                                    config={this.state.config} 
-                                                    menu={this.state.menusList}
-                                                    categories={this.state.categoriesList}
-                                                    lang={this.state.siteLang}
-                                                    {...props} /> } />
+                   
                                                     
                     <Route component={Error} />
                 </Switch>       

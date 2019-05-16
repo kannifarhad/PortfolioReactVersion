@@ -19,9 +19,17 @@ class PortfolioList extends React.Component {
     }
 
     componentWillMount() {
-        //getting portfolio posts list
+        this.getPostsList();
+    }
+    componentDidUpdate(prevProps) {
+        if(prevProps.pageInfo.slug !== this.props.pageInfo.slug) {
+            this.getPostsList();
+        }
+    }
+    getPostsList() {
+        let postsList = (this.props.pageInfo.slug != 'portfolio') ? portfolio.filter(post=> ( post.categories.includes(this.props.pageInfo.slug)) ? post :'') : portfolio;
         this.setState({
-            postsList : portfolio,
+            postsList,
         });
         /*axios.get('http://api.kanni.loc/main')
             .then(response => response.data())
@@ -33,9 +41,6 @@ class PortfolioList extends React.Component {
         console.log('Render Portfolio List',this.props);
         return(
             <div>
-                
-                
-
                 <div className="projectwrapper">
                     <div className="projectcircles"></div>
                     <div className="projecttitle"><h1>{this.props.pageInfo.title}</h1></div>
@@ -43,8 +48,9 @@ class PortfolioList extends React.Component {
                 </div>
 
                 <div className="projectslist">
-                    <PortfolioItemsList languageData={this.props.languageData} items={this.state.postsList} lang={this.props.lang} categories={this.props.typeInfo.categories}/>
+                    <PortfolioItemsList categorySlug={this.props.pageInfo.slug} languageData={this.props.languageData} items={this.state.postsList} lang={this.props.lang} categories={this.props.typeInfo.categories}/>
                 </div>
+                <div className="clear"></div>
             </div>
         )
     }
