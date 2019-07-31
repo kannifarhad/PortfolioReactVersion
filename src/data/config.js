@@ -1,5 +1,4 @@
 const config = {
-    "defaultLang" : "en",
     "URL":"http://localhost:3000/",
     "birthdate" : "9-June-1988",
     "phone":"+994 51 303-50-55",
@@ -11,12 +10,16 @@ const config = {
         {   
             'id':  1,
             'slug': 'en',
-            'title': 'English'
+            'title': 'English',
+            'sitetitle' : 'Kanni.Pro English',
+            'default' : 1
         },
         {   
             'id': 2,
             'slug': 'az',
-            'title': 'Azərbaycanca'
+            'title': 'Azərbaycanca',
+            'sitetitle' : 'Kanni.Pro Azerbaijanish',
+            'default' : 0
         }
     ]
 };

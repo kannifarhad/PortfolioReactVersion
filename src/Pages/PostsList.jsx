@@ -77,9 +77,9 @@ class PostsCategory extends React.Component {
             <div>
                 {(this.state.typeInfo) ?
                     <div className="categories">
-                        <NavLink exact to={`/${this.props.lang}/${this.state.typeSlug}`}>All</NavLink>
+                        <NavLink exact to={`/${this.props.lang.slug}/${this.state.typeSlug}`}>All</NavLink>
                         {this.state.typeInfo.categories.map(item => 
-                            <NavLink key={item.id} to={`/${this.props.lang}/${this.state.typeSlug}/${item.slug}`} className={(this.state.categorySlug == item.slug) ? 'active' : ''} data-filter={item.slug}>{item.title}</NavLink>
+                            <NavLink key={item.id} to={`/${this.props.lang.slug}/${this.state.typeSlug}/${item.slug}`} className={(this.state.categorySlug == item.slug) ? 'active' : ''} data-filter={item.slug}>{item.title}</NavLink>
                             )}
                     </div> 
                 : ''}

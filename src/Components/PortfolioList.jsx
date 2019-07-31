@@ -1,5 +1,6 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
+import {Helmet} from "react-helmet";
 
 import PortfolioItemsList from './Elements/PortfolioItemsList';
 import PortfolioHomeHead from './Elements/PortfolioHomeHead';
@@ -41,6 +42,11 @@ class PortfolioList extends React.Component {
         console.log('Render Portfolio List',this.props);
         return(
             <div>
+                <Helmet>
+                    <meta charSet="utf-8" />
+                    <title>{this.props.pageInfo.title} | {this.props.lang.sitetitle}</title>
+                    <meta name="description" content={this.props.pageInfo.description} />
+                </Helmet>
                 <div className="projectwrapper">
                     <div className="projectcircles"></div>
                     <div className="projecttitle"><h1>{this.props.pageInfo.title}</h1></div>
@@ -48,7 +54,7 @@ class PortfolioList extends React.Component {
                 </div>
 
                 <div className="projectslist">
-                    <PortfolioItemsList categorySlug={this.props.pageInfo.slug} languageData={this.props.languageData} items={this.state.postsList} lang={this.props.lang} categories={this.props.typeInfo.categories}/>
+                    <PortfolioItemsList categorySlug={this.props.match.params.category} typeSlug={this.props.match.params.type} languageData={this.props.languageData} items={this.state.postsList} lang={this.props.lang} categories={this.props.typeInfo.categories}/>
                 </div>
                 <div className="clear"></div>
             </div>

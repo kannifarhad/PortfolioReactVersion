@@ -1,15 +1,15 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
 
-function UlLlist(props) {
+export default function UlLlist(props) {
     const checkActive = (match, location) => {
         if(!match) return false;
-        return match.url != "/"+props.lang;
+        return match.url != "/"+props.lang.slug;
     }
     return(
         <ul className={props.listClass}>
             {props.menu.map(item =>  <li key={item.id}>
-                                        <NavLink isActive={checkActive} to={`/${props.lang}${item.link}`} >
+                                        <NavLink isActive={checkActive} to={`/${props.lang.slug}${item.link}`} >
                                             {(props.icons) ? <span className={`icons ${item.icon}`}></span> : ''}
                                             <span className='menutitle'>{item.name}</span>
                                         </NavLink>
@@ -26,5 +26,3 @@ function UlLlist(props) {
         </ul>
     )
 }
-
-export default UlLlist;

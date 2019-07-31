@@ -35,20 +35,24 @@ class App extends React.Component {
 
     handleLangChange(lang){
         console.log('App langchangeCalled: ' + lang);
+        let getLang = this.state.config.langlist.filter(langs=> ( langs.slug == lang ) ? langs :'')[0];
+        console.log();
         this.setState({
-            siteLang: lang,
-            URI: config.URL + lang
+            siteLang: getLang,
+            URI: config.URL + getLang.slug
         });
     }
 
     componentWillMount() {
+        let getLang = config.langlist.filter(langs=> ( langs.default == 1 ) ? langs :'')[0];
+
         this.setState({
             config,
             menusList,
             languageData,
             categoriesList,
-            siteLang: config.defaultLang,
-            URI: config.URL + config.defaultLang
+            siteLang: getLang,
+            URI: config.URL + getLang.slug
         });
         /*axios.get('http://api.kanni.loc/main')
             .then(response => response.data())

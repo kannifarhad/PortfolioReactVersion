@@ -91,7 +91,7 @@ class PostsPage extends React.Component {
                     <div className="categories">
                         <NavLink exact to={`/${this.props.lang}/${this.state.typeSlug}`}>All</NavLink>
                         {this.state.typeInfo.categories.map(item => 
-                            <NavLink key={item.id} to={`/${this.props.lang}/${this.state.typeSlug}/${item.slug}`} className={(this.state.categorySlug == item.slug) ? 'active' : ''} data-filter={item.slug}>{item.title}</NavLink>
+                            <NavLink key={item.id} to={`/${this.props.lang.slug}/${this.state.typeSlug}/${item.slug}`} className={(this.state.categorySlug == item.slug) ? 'active' : ''} data-filter={item.slug}>{item.title}</NavLink>
                             )}
                     </div> 
                 : ''}

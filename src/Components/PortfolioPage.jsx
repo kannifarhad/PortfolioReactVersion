@@ -1,5 +1,6 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
+import {Helmet} from "react-helmet";
 
 import SochialShare from './Elements/SochialShare';
 
@@ -36,6 +37,11 @@ class PortfolioPage extends React.Component {
         }
         return(
             <div>
+                <Helmet>
+                    <meta charSet="utf-8" />
+                    <title>{this.props.postFull.title}</title>
+                    <meta name="description" content={this.props.postFull.shortstory} />
+                </Helmet>
                 <div className="projectwrapper">
                     <div className="projectcircles"></div>
                     <div className="projecttitle"><h1>{this.props.postFull.title}</h1></div>
