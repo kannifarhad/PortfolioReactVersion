@@ -7,8 +7,9 @@ import {createStore} from 'redux';
 import config from './data/config';
 
 const store = createStore(reducer, config);
+store.subscribe(()=> console.log(store.getState()));
 console.log(store.getState());
-ReactDOM.render( <App title={"Site RIRLE"} />, document.getElementById("root"));
+ReactDOM.render( <App title={"Site RIRLE"} store={store} />, document.getElementById("root"));
 
 // import $ from 'jquery';
 // import styles from './Assets/css/style.css';

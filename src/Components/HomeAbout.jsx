@@ -12,7 +12,7 @@ function HomeAbout(props) {
 			<div className="aboutext">{props.aboutData.fullstory}</div>
 			<div className="clear"></div>
 		</div>
-		<Skills skills={props.mySkills} config={props.config} />
+		<Skills  store = {props.store} skills={props.mySkills} config={props.config} />
 	</div>/* About me end*/
     )
 }

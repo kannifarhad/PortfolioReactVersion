@@ -4,14 +4,14 @@ function siteReducer(state = {}, action) {
     switch(action.type) {
         case GET_CATEGORIES:
             return state;
-            
+
     }
 }
 
 export default function reducer(state = {}, action){
     switch(action.type){
         case LANG_CHANGE:
-                state = action.lang;
+                state.lang = action.lang;
                 return state;
 
         case PORTFOLIO_CATEGORY_CHANGE:

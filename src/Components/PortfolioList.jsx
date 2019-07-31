@@ -12,6 +12,7 @@ import portfolio from '../data/portfolio';
 class PortfolioList extends React.Component {
     constructor(props) {
         super(props);
+        this.store = this.props.store;
         this.state = {
             typeSlug: this.props.match.params.type,
             categorySlug: this.props.match.params.category,
@@ -54,7 +55,7 @@ class PortfolioList extends React.Component {
                 </div>
 
                 <div className="projectslist">
-                    <PortfolioItemsList categorySlug={this.props.match.params.category} typeSlug={this.props.match.params.type} languageData={this.props.languageData} items={this.state.postsList} lang={this.props.lang} categories={this.props.typeInfo.categories}/>
+                    <PortfolioItemsList  store = {this.store} categorySlug={this.props.match.params.category} typeSlug={this.props.match.params.type} languageData={this.props.languageData} items={this.state.postsList} lang={this.props.lang} categories={this.props.typeInfo.categories}/>
                 </div>
                 <div className="clear"></div>
             </div>

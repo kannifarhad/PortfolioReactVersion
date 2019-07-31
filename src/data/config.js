@@ -6,6 +6,7 @@ const config = {
     "linkedin":"http://facebook.com/",
     "facebook":"http://facebook.com/",
     "resume":"#resumelink",
+    "lang": "en",
     "langlist": [
         {   
             'id':  1,

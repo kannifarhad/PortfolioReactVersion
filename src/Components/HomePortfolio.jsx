@@ -8,8 +8,8 @@ function HomePortfolio(props){
     return (
         <div id="portfolio">
 			<div className="portfoliocont">
-                <PortfolioHomeHead categories={props.categories} />
-                <PortfolioItemsList categorySlug={categorySlug} typeSlug={'portfolio'} languageData={props.languageData}  lang={props.lang} items={props.portfolio} categories={props.categories}/>
+                <PortfolioHomeHead  store={props.store} categories={props.categories} />
+                <PortfolioItemsList store={props.store} categorySlug={categorySlug} typeSlug={'portfolio'} languageData={props.languageData}  lang={props.lang} items={props.portfolio} categories={props.categories}/>
             </div>
         </div>
     )

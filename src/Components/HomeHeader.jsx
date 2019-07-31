@@ -3,11 +3,12 @@ import {NavLink} from 'react-router-dom';
 
 import UlList from './Elements/UlLlist';
 import HeaderAnimation from './Elements/HeaderAnimation';
+import {langChange} from '../Redux/actions';
 
 class HomeHeader extends React.Component {
     constructor(props){
         super(props);
-
+        this.store = this.props.store;
         this.state = {
             phoneMenuOpened: false
         }
@@ -16,7 +17,7 @@ class HomeHeader extends React.Component {
     }
 
     handleLangChange(lang){
-        this.props.langChanged(lang);
+        this.store.dispatch(langChange(lang));
     }
 
     handleClick(event) {

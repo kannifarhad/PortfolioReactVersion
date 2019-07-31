@@ -15,12 +15,13 @@ import languageData from './data/language';
 import menusList from './data/menu';
 import categoriesList from './data/categories';
 
+
 class App extends React.Component {
 
     constructor(props) {
         super(props);
         this.props = props;
-
+        this.store = this.props.store;
         this.state = {
             siteLang : null,
             config: null,
@@ -34,13 +35,7 @@ class App extends React.Component {
     }
 
     handleLangChange(lang){
-        console.log('App langchangeCalled: ' + lang);
-        let getLang = this.state.config.langlist.filter(langs=> ( langs.slug == lang ) ? langs :'')[0];
-        console.log();
-        this.setState({
-            siteLang: getLang,
-            URI: config.URL + getLang.slug
-        });
+        this.store.dispatch(langChange(lang));
     }
 
     componentWillMount() {
@@ -71,7 +66,8 @@ class App extends React.Component {
                                 menuData={this.state.menusList['inner-menu']}
                                 categories={this.state.categoriesList}
                                 lang={this.state.siteLang}
-                                handleAppLangChange={this.handleLangChange} {...props} /> 
+                                store = {this.store}
+                                 {...props} /> 
                                 : "" )} />
 
                 <Switch>
@@ -82,7 +78,8 @@ class App extends React.Component {
                                                     menu={this.state.menusList}
                                                     categories={this.state.categoriesList}
                                                     lang={this.state.siteLang}
-                                                    handleAppLangChange={this.handleLangChange}
+                                                    store = {this.store}
+
                                                     {...props} /> } />
                 <Route path="/:lang?/:type/:category?/view/:post" 
                             render = {props => <PostsPage 
@@ -91,6 +88,8 @@ class App extends React.Component {
                                                     menu={this.state.menusList}
                                                     categories={this.state.categoriesList}
                                                     lang={this.state.siteLang}
+                                                    store = {this.store}
+
                                                     {...props} /> } />
                     <Route path="/:lang?/:type/:category?" 
                             render = {props => <PostsList 
@@ -98,6 +97,8 @@ class App extends React.Component {
                                                     config={this.state.config} 
                                                     menu={this.state.menusList}
                                                     lang={this.state.siteLang}
+                                                    store = {this.store}
+
                                                     {...props} /> } />
 
                    

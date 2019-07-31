@@ -15,6 +15,7 @@ import portfolio from '../data/portfolio';
 class Home extends React.Component {
     constructor(props) {
         super(props);
+        this.store = this.props.store;
         
         this.state = {
             config: this.props.config,
@@ -25,11 +26,8 @@ class Home extends React.Component {
             skills: null,
             portfolio: null
         }
-        this.handleHomeLangChange = this.handleHomeLangChange.bind(this);
     }
-    handleHomeLangChange(lang) {
-        this.props.handleAppLangChange(lang);
-    }
+ 
     componentWillMount() {
         this.setState({
             about,
@@ -44,11 +42,11 @@ class Home extends React.Component {
     render(){
         return(
             <div className="wrapper">
-                <HomeHeader lang={this.props.lang} langChanged={this.handleHomeLangChange} config={this.state.config} menuData={this.state.menuData['main-menu']}/>
-                <HomeAbout lang={this.props.lang} aboutData={this.state.about} mySkills={this.state.skills} config={this.state.config} />
+                <HomeHeader store={this.store} lang={this.props.lang} langChanged={this.handleHomeLangChange} config={this.state.config} menuData={this.state.menuData['main-menu']}/>
+                <HomeAbout  store={this.store} lang={this.props.lang} aboutData={this.state.about} mySkills={this.state.skills} config={this.state.config} />
                 <HomeMyServices />
-                <HomePortfolio languageData={this.state.languageData} lang={this.props.lang} categories={this.state.categories} portfolio={this.state.portfolio}/>
-                <WorkedWith languageData={this.state.languageData} />
+                <HomePortfolio  store={this.store} languageData={this.state.languageData} lang={this.props.lang} categories={this.state.categories} portfolio={this.state.portfolio}/>
+                <WorkedWith  store={this.store} languageData={this.state.languageData} />
             </div>
         )
     }
