@@ -16,16 +16,13 @@ class Home extends React.Component {
     constructor(props) {
         super(props);
         this.store = this.props.store;
-        
-        this.state = {
-            config: this.props.config,
-            menuData: this.props.menu,
-            languageData: this.props.languageData,
-            categories: this.props.categories,
-            about: null,
-            skills: null,
-            portfolio: null
-        }
+        this.state = this.store.getState();
+
+        // this.state = {
+        //     about: null,
+        //     skills: null,
+        //     portfolio: null
+        // }
     }
  
     componentWillMount() {
@@ -40,13 +37,14 @@ class Home extends React.Component {
             .catch(error=> console.error(error.message));*/
     }
     render(){
+        console.log(this.state);
         return(
             <div className="wrapper">
-                <HomeHeader store={this.store} lang={this.props.lang} langChanged={this.handleHomeLangChange} config={this.state.config} menuData={this.state.menuData['main-menu']}/>
-                <HomeAbout  store={this.store} lang={this.props.lang} aboutData={this.state.about} mySkills={this.state.skills} config={this.state.config} />
+                <HomeHeader store={this.store} />
+                <HomeAbout  store={this.store} aboutData={this.state.about} mySkills={this.state.skills} config={this.state.config} />
                 <HomeMyServices />
-                <HomePortfolio  store={this.store} languageData={this.state.languageData} lang={this.props.lang} categories={this.state.categories} portfolio={this.state.portfolio}/>
-                <WorkedWith  store={this.store} languageData={this.state.languageData} />
+                <HomePortfolio  store={this.store} portfolio={this.state.portfolio}/>
+                <WorkedWith  store={this.store}  />
             </div>
         )
     }

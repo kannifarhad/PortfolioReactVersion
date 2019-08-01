@@ -1,13 +1,8 @@
 import React from 'react';
 
 
-class PortfolioHead extends React.Component {
-    constructor(props) {
-        super(props);
-        this.props = props;
-    }
-
-    render(){
+function  PortfolioHead (props) {
+    var state = props.store.getState();
         return(
             <div className="portfoliohead">
             	<h1>Featured Works</h1>
@@ -15,14 +10,13 @@ class PortfolioHead extends React.Component {
                 <div className="clear"></div>
                 <ul className="filters">
                     <li data-filter="all">All</li>
-                    {this.props.categories.map(categorie => 
+                    {state.categoriesList.map(categorie => 
                         (categorie.type == 'portfolio') ? <li key={categorie.id} data-filter={`.${categorie.slug}`}>{categorie.title} </li> : false
                         )
                     }
                 </ul>
             </div>
         )
-    }
 }
 
 export default PortfolioHead;

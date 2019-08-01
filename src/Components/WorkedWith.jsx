@@ -1,12 +1,14 @@
 import React from 'react';
 
 function WorkedWith(props) {
+    var state = props.store.getState();
+
     return(
         <div id="workedwith">
             <div className="workedhead">
                 <div>
-                <h1>{props.languageData['Defalut']}</h1>
-                <p>{props.languageData['Defalut']}</p>
+                <h1>{state.languageData['Defalut']}</h1>
+                <p>{state.languageData['Defalut']}</p>
                 </div>
             </div>
 

@@ -1,19 +1,21 @@
 import React from 'react';
 
 function HomeSkills (props) {
+	var state = props.store.getState();
     return (
+		
         <div className="skills">
 
             <div className="skillsblock ">
 				<h1>Personal Information</h1>
 				<ul className="myskills">
-					<li><b>Birthdate :</b> <span> {props.config.birthdate}</span></li>
-					<li><b>Phone :</b> <span> {props.config.phone}</span></li>
-					<li><b>E-mail :</b> <span> {props.config.email}</span></li>
-					<li><b>LinkedIn :</b> <a href={props.config.linkedin} target="_blank"> Farhad Aliyev</a></li>
-					<li><b>Facebook :</b> <a href={props.config.facebook}  target="_blank">View Page</a></li>
+					<li><b>Birthdate :</b> <span> {state.config.birthdate}</span></li>
+					<li><b>Phone :</b> <span> {state.config.phone}</span></li>
+					<li><b>E-mail :</b> <span> {state.config.email}</span></li>
+					<li><b>LinkedIn :</b> <a href={state.config.linkedin} target="_blank"> Farhad Aliyev</a></li>
+					<li><b>Facebook :</b> <a href={state.config.facebook}  target="_blank">View Page</a></li>
 				</ul>
-				<a className="button" href={props.config.resume}>DOWNLOAD RESUME</a>
+				<a className="button" href={state.config.resume}>DOWNLOAD RESUME</a>
 			</div>
 
             <div className="skillsblock">

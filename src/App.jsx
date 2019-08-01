@@ -10,10 +10,7 @@ import PostsList from './Pages/PostsList';
 import PostsPage from './Pages/PostsPage';
 import Error from './Pages/Error';
 
-import config from './data/config';
-import languageData from './data/language';
-import menusList from './data/menu';
-import categoriesList from './data/categories';
+
 
 
 class App extends React.Component {
@@ -22,15 +19,17 @@ class App extends React.Component {
         super(props);
         this.props = props;
         this.store = this.props.store;
-        this.state = {
-            siteLang : null,
-            config: null,
-            menusList: null,
-            languageData: null,
-            categoriesList: null,
-            user: null,
-            URI: null
-        }
+        this.state = this.store.getState();
+
+        // this.state = {
+        //     siteLang : null,
+        //     config: null,
+        //     menusList: null,
+        //     languageData: null,
+        //     categoriesList: null,
+        //     user: null,
+        //     URI: null
+        // }
         this.handleLangChange = this.handleLangChange.bind(this);
     }
 
@@ -39,16 +38,16 @@ class App extends React.Component {
     }
 
     componentWillMount() {
-        let getLang = config.langlist.filter(langs=> ( langs.default == 1 ) ? langs :'')[0];
+        //let getLang = config.langlist.filter(langs=> ( langs.default == 1 ) ? langs :'')[0];
 
-        this.setState({
-            config,
-            menusList,
-            languageData,
-            categoriesList,
-            siteLang: getLang,
-            URI: config.URL + getLang.slug
-        });
+        // this.setState({
+        //     config,
+        //     menusList,
+        //     languageData,
+        //     categoriesList,
+        //     siteLang: getLang,
+        //     URI: config.URL + getLang.slug
+        // });
         /*axios.get('http://api.kanni.loc/main')
             .then(response => response.data())
             .then(test => this.setState({ test }))
@@ -56,7 +55,7 @@ class App extends React.Component {
     }
 
     render() {
-        console.log('App Render');
+        console.log(this.state);
         return(
             <Router>
                 <Route path="/" render={ ( props ) => ( (props.location.pathname !== "/") && !(/\/([a-zA-Z]{2})([/]?)$/.test(props.location.pathname)) ?  

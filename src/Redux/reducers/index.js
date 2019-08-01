@@ -11,7 +11,7 @@ function siteReducer(state = {}, action) {
 export default function reducer(state = {}, action){
     switch(action.type){
         case LANG_CHANGE:
-                state.lang = action.lang;
+                state.config.lang = action.lang;
                 return state;
 
         case PORTFOLIO_CATEGORY_CHANGE:

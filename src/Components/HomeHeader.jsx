@@ -9,7 +9,9 @@ class HomeHeader extends React.Component {
     constructor(props){
         super(props);
         this.store = this.props.store;
-        this.state = {
+        this.state = this.store.getState();
+
+        this.state.setState = {
             phoneMenuOpened: false
         }
         this.handleClick = this.handleClick.bind(this);
@@ -34,19 +36,18 @@ class HomeHeader extends React.Component {
                 <div>
                     <div id="menu">
                         <UlList 
-                            lang={this.props.lang}
-                            menu={this.props.menuData} 
-                            config={this.props.config} 
+                            menu={this.state.menusList['main-menu']} 
                             listClass='menu' 
                             icons={false} 
                             LangClicked={this.handleLangChange} 
+                            store={this.store}
                             />
                     </div>
                     
                     <div id="phonemenu">
                         <div className="menyunuach" onClick={this.handleClick}>Open Menu</div>
                         <ul className='phonemenu'>
-                        {this.props.menuData.map(menu => 
+                        {this.state.menusList['main-menu'].map(menu => 
                             <li key={menu.id}><NavLink to={menu.link}><span className='menutitle'>{menu.name}</span></NavLink></li>
                         )}
                         </ul>	

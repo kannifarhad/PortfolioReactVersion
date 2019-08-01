@@ -7,6 +7,7 @@ const config = {
     "facebook":"http://facebook.com/",
     "resume":"#resumelink",
     "lang": "en",
+    "URI" : "http://localhost:3000/en/",
     "langlist": [
         {   
             'id':  1,
