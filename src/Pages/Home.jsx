@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import HomeHeader from '../Components/HomeHeader';
 import HomeAbout from '../Components/HomeAbout';
@@ -12,17 +13,11 @@ import skills from '../data/skills';
 import portfolio from '../data/portfolio';
 
 
-class Home extends React.Component {
+class HomePage extends React.Component {
     constructor(props) {
         super(props);
-        this.store = this.props.store;
-        this.state = this.store.getState();
-
-        // this.state = {
-        //     about: null,
-        //     skills: null,
-        //     portfolio: null
-        // }
+        console.log(props);
+        this.state = props.store;
     }
  
     componentWillMount() {
@@ -40,14 +35,21 @@ class Home extends React.Component {
         console.log(this.state);
         return(
             <div className="wrapper">
-                <HomeHeader store={this.store} />
-                <HomeAbout  store={this.store} aboutData={this.state.about} mySkills={this.state.skills} config={this.state.config} />
+                <HomeHeader />
+                {/* <HomeAbout  store={this.store} aboutData={this.state.about} mySkills={this.state.skills} config={this.state.config} />
                 <HomeMyServices />
                 <HomePortfolio  store={this.store} portfolio={this.state.portfolio}/>
-                <WorkedWith  store={this.store}  />
+                <WorkedWith  store={this.store}  /> */}
             </div>
         )
     }
 }
+const mapStateToProps = (store, ownProps) => {
+    return {
+        store,
+        ownProps
+    }
+};
 
+const Home = connect(mapStateToProps, null)(HomePage);
 export default Home;

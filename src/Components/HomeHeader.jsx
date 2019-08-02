@@ -1,5 +1,6 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import UlList from './Elements/UlLlist';
 import HeaderAnimation from './Elements/HeaderAnimation';
@@ -8,18 +9,9 @@ import {langChange} from '../Redux/actions';
 class HomeHeader extends React.Component {
     constructor(props){
         super(props);
-        this.store = this.props.store;
-        this.state = this.store.getState();
-
-        this.state.setState = {
-            phoneMenuOpened: false
-        }
+        this.state = props.store;
+        this.state.phoneMenuOpened = false;
         this.handleClick = this.handleClick.bind(this);
-        this.handleLangChange = this.handleLangChange.bind(this);
-    }
-
-    handleLangChange(lang){
-        this.store.dispatch(langChange(lang));
     }
 
     handleClick(event) {
@@ -39,8 +31,8 @@ class HomeHeader extends React.Component {
                             menu={this.state.menusList['main-menu']} 
                             listClass='menu' 
                             icons={false} 
-                            LangClicked={this.handleLangChange} 
-                            store={this.store}
+                            LangClicked={this.props.langChange} 
+                            config={this.state.config}
                             />
                     </div>
                     
@@ -58,4 +50,14 @@ class HomeHeader extends React.Component {
     }
 }
 
-export default HomeHeader;
+const mapStateToProps = store => {
+    return {
+        store
+    }
+};
+const mapDispatchToProps = dispatch => ({
+    langChange: lang => dispatch(langChange(lang))
+})
+const HomeHeaderContainer = connect(mapStateToProps, mapDispatchToProps)(HomeHeader);
+
+export default HomeHeaderContainer;
