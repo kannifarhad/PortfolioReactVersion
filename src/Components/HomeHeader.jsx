@@ -55,9 +55,11 @@ const mapStateToProps = store => {
         store
     }
 };
+
 const mapDispatchToProps = dispatch => ({
     langChange: lang => dispatch(langChange(lang))
-})
+});
+
 const HomeHeaderContainer = connect(mapStateToProps, mapDispatchToProps)(HomeHeader);
 
 export default HomeHeaderContainer;

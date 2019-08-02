@@ -6,17 +6,19 @@ function HomeMyServices(props) {
             <div id="myabilities">
                 <div className="abiliteshead">
                     <div>
-                        <h1>service.title</h1>
-                        <p>service.description</p>
+                        <h1>{props.servicesInfo.title}</h1>
+                        <p>{props.servicesInfo.description}</p>
                     </div>
                 </div>
 
                 <div className="abilitiescont">
-                    <div className="ability">
-                                <div className="abilityicon"><img src="serv.thumb_image" /> </div>
-                                <h1>serv.title</h1>
-                                <p>serv.shortstory</p>
-                    </div>
+                    {props.servicesList.map(service => 
+						<div key={service.id} className="ability">
+                            <div className="abilityicon"><img src={service.icon} /> </div>
+                            <h1>{service.title}</h1>
+                            <p>{service.description}</p>
+                        </div>
+                    )}
                 </div>
                 <div className="clear"></div>
             </div>
@@ -33,9 +35,10 @@ function HomeMyServices(props) {
                     <div className="lamp lamp5" style={{left:"1025px",top:"-230px"}}><img src="assets/img/lamp/5on.png"/> </div>
                     <div className="lamp lamp4" style={{left:"1110px",top:"-10px"}}><img src="assets/img/lamp/4on.png"/> </div>
                     <div className="lamp lamp3" style={{left:"1200px",top:"-240px"}}><img src="assets/img/lamp/3on.png"/> </div>
+
                     <div className="sitat">
-                        <p>"There are painters who transform the sun to a yellow spot, but there are others who with the help of their art and their intelligence, transform a yellow spot into sun”</p>
-                        <span>Pablo Picasso</span>
+                        <p>{props.languageData['Slogan']}</p>
+                        <span>{props.languageData['Pablo Picasso']}</span>
                     </div>
                 </div>
             </div>

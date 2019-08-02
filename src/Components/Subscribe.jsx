@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 function Subscribe(props) {
     return(
@@ -6,7 +7,7 @@ function Subscribe(props) {
             <div className="left">
                 <div className="texthead">
                     <h1>{props.languageData['SUBSCRIBE TO SITE']}</h1>
-                    <p>{props.languageData['Subscribe Text']}</p>
+                    <p>{props.languageData['subscribeText']}</p>
                 </div>
             </div>
             <div className="right">
@@ -30,4 +31,12 @@ function Subscribe(props) {
     )
 }
 
-export default Subscribe;
+const mapStateToProps = store => {
+    return {
+        languageData: store.languageData
+    }
+};
+const mapDispatchToProps = dispatch => ({});
+const SubscribeContainer = connect(mapStateToProps, mapDispatchToProps)(Subscribe);
+
+export default SubscribeContainer;

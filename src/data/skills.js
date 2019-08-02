@@ -3,19 +3,19 @@ const skills = {
         {
             "id":1,
             "name": "Logo Design",
-            "icon":"http://kanni.pro/uploads/about/skills/pencil-case.svg",
+            "icon":"http://kannireact.com/uploads/about/skills/pencil-case.svg",
             "level":"Good"
         },
         {
             "id":2,
             "name": "Paint Illustrations",
-            "icon":"http://kanni.pro/uploads/about/skills/painter.svg",
+            "icon":"http://kannireact.com/uploads/about/skills/painter.svg",
             "level":"Good"
         },
         {
             "id":3,
             "name": "Graphic Design",
-            "icon":"http://kanni.pro/uploads/about/skills/graphicdesign.svg",
+            "icon":"http://kannireact.com/uploads/about/skills/graphicdesign.svg",
             "level":"Good"
         }
     ],
@@ -23,19 +23,19 @@ const skills = {
         {
             "id":1,
             "name": "NodeJs",
-            "icon":"http://kanni.pro/uploads/about/skills/node.png",
+            "icon":"http://kannireact.com/uploads/about/skills/node.png",
             "level":"Good"
         },
         {
             "id":2,
             "name": "Redux",
-            "icon":"http://kanni.pro/uploads/about/skills/redux.png",
+            "icon":"http://kannireact.com/uploads/about/skills/redux.png",
             "level":"Good"
         },
         {
             "id":3,
             "name": "ReactJs",
-            "icon":"http://kanni.pro/uploads/about/skills/react.png",
+            "icon":"http://kannireact.com/uploads/about/skills/react.png",
             "level":"Good"
         }
     ]

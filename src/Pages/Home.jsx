@@ -11,12 +11,13 @@ import WorkedWith from '../Components/WorkedWith';
 import about from '../data/about';
 import skills from '../data/skills';
 import portfolio from '../data/portfolio';
+import services from '../data/services';
+import servicesInfo from '../data/servicesInfo';
 
 
 class HomePage extends React.Component {
     constructor(props) {
         super(props);
-        console.log(props);
         this.state = props.store;
     }
  
@@ -25,6 +26,8 @@ class HomePage extends React.Component {
             about,
             skills,
             portfolio,
+            services,
+            servicesInfo
         });
         /*axios.get('http://api.kanni.loc/main')
             .then(response => response.data())
@@ -32,14 +35,15 @@ class HomePage extends React.Component {
             .catch(error=> console.error(error.message));*/
     }
     render(){
-        console.log(this.state);
         return(
             <div className="wrapper">
                 <HomeHeader />
-                {/* <HomeAbout  store={this.store} aboutData={this.state.about} mySkills={this.state.skills} config={this.state.config} />
-                <HomeMyServices />
-                <HomePortfolio  store={this.store} portfolio={this.state.portfolio}/>
-                <WorkedWith  store={this.store}  /> */}
+                <HomeAbout aboutData={this.state.about} mySkills={this.state.skills} />
+                <HomeMyServices languageData={this.state.languageData} servicesInfo={this.state.servicesInfo} servicesList={this.state.services} />
+                {/* 
+                <HomePortfolio portfolio={this.state.portfolio}/>
+                */}
+                <WorkedWith /> 
             </div>
         )
     }

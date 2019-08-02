@@ -1,10 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 class Contact extends React.Component {
     constructor(props) {
-        super();
+        super(props);
         this.props = props;
-        
         this.sendMessage = this.sendMessage.bind(this);
     }
 
@@ -54,31 +54,31 @@ class Contact extends React.Component {
                 <div className="contactwrapper">
 
                     <div className="contacthead">
-                        <h1>DROP A MESSAGE</h1>
-                        <p>Use the form below to drop me an e-mail. You can be sure that your mail isn`t going to the inbox abyss, never to be seen or heard from again. I provide the exceptional service i`d want to experience myself. Old-fashioned phone calls work too - (+994 51) 303 50 55</p>
+                        <h1>{this.props.languageData['DROP A MESSAGE']}</h1>
+                        <p>{this.props.languageData['contactText']}</p>
                     </div>
 
                     <div className="form-messages" id="contact-message"></div>
 
                     <form className="contactform" id="ajax-contact" method="post" action="http://api.kanni.pro/form/contact" onSubmit={this.sendMessage}>
                         <label className="half">   
-                            <input type="text" ref="name" className="" id="name" name="name" required placeholder="Your Name..." />
+                            <input type="text" ref="name" className="" id="name" name="name" required placeholder={this.props.languageData['Your Name...']} />
                         </label>
 
                         <label className="half">
-                            <input type="text" ref="email" className="" id="email" name="email" required placeholder="Your E-mail..." />
+                            <input type="text" ref="email" className="" id="email" name="email" required placeholder={this.props.languageData['Your E-mail...']} />
                         </label>
 
                         <label className="half">
-                            <input type="text" ref="phone" id="phone" name="phone" placeholder="Your Phone Number..." />
+                            <input type="text" ref="phone" id="phone" name="phone" placeholder={this.props.languageData['Your Phone Number...']} />
                         </label>
 
                         <label className="half">
-                            <input type="text" ref="subject" id="subjects" name="subjects" placeholder="Subject..." />
+                            <input type="text" ref="subject" id="subjects" name="subjects" placeholder={this.props.languageData['Subject...']} />
                         </label>
 
-                        <textarea id="message" ref="message" name="message" required className="" placeholder="Type your message"></textarea>
-                        <input type="submit" value="Send Message" />
+                        <textarea id="message" ref="message" name="message" required className="" placeholder={this.props.languageData['Type your message']}></textarea>
+                        <input type="submit" value={this.props.languageData['Send Message']} />
                     </form>
 
                 </div>
@@ -86,5 +86,12 @@ class Contact extends React.Component {
         )
     }
 }
+const mapStateToProps = store => {
+    return {
+        languageData: store.languageData
+    }
+};
+const mapDispatchToProps = dispatch => ({});
+const ContactContainer = connect(mapStateToProps, mapDispatchToProps)(Contact);
 
-export default Contact;
+export default ContactContainer;

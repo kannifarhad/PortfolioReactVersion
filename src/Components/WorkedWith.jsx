@@ -1,24 +1,37 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import workedWithInfo from '../data/workedWithInfo';
+import workedWithList from '../data/workedWithList';
 
 function WorkedWith(props) {
-    var state = props.store.getState();
-
+    console.log(props);
     return(
         <div id="workedwith">
             <div className="workedhead">
                 <div>
-                <h1>{state.languageData['Defalut']}</h1>
-                <p>{state.languageData['Defalut']}</p>
+                <h1>{props.workedWithInfo.title}</h1>
+                <p>{props.workedWithInfo.description}</p>
                 </div>
             </div>
 
             <div className="workwith">
                 <div className="logos">
-                    <a href="company.shortstory" target="_blank" alt="company.title"><img className="svg" src="company.thumb_image" /></a>
+                    {props.workedWithList.map(partner => 
+                        <a key={partner.id} href={partner.link} target="_blank" alt={partner.title}><img className="svg" src={partner.icon} /></a>
+                    )}
                 </div>
             </div><div className="clear"></div>
         </div>
     )
 }
+const mapStateToProps = (store) => {
+    return {
+        languageData: store.languageData,
+        workedWithInfo,
+        workedWithList
+    }
+};
 
-export default WorkedWith;
+const WorkedWithContainer = connect(mapStateToProps, null)(WorkedWith);
+
+export default WorkedWithContainer;
