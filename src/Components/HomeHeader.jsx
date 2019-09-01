@@ -1,65 +1,58 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import UlList from './Elements/UlLlist';
 import HeaderAnimation from './Elements/HeaderAnimation';
 import {langChange} from '../Redux/actions';
 
-class HomeHeader extends React.Component {
-    constructor(props){
-        super(props);
-        this.state = props.store;
-        this.state.phoneMenuOpened = false;
-        this.handleClick = this.handleClick.bind(this);
-    }
-
-    handleClick(event) {
-        event.preventDefault();
-        (this.state.phoneMenuOpened) ? $('.phonemenu').slideUp(500) : $('.phonemenu').slideDown(500);
-        this.setState({
-            phoneMenuOpened: !this.state.phoneMenuOpened
-        })
-        
-    }
-
-    render() {
+function HomeHeader (props){
         return(
+            <div>
+            {(typeof props.menusList!= 'undefined')?
                 <div>
                     <div id="menu">
                         <UlList 
-                            menu={this.state.menusList['main-menu']} 
+                            menu={props.menusList.mainmenu.menujson} 
                             listClass='menu' 
                             icons={false} 
-                            LangClicked={this.props.langChange} 
-                            config={this.state.config}
+                            LangClicked = {props.langChange} 
+                            config = {props.config}
+                            langList= {props.langList}
                             />
                     </div>
                     
                     <div id="phonemenu">
-                        <div className="menyunuach" onClick={this.handleClick}>Open Menu</div>
-                        <ul className='phonemenu'>
-                        {this.state.menusList['main-menu'].map(menu => 
-                            <li key={menu.id}><NavLink to={menu.link}><span className='menutitle'>{menu.name}</span></NavLink></li>
-                        )}
-                        </ul>	
+                        <div className="menyunuach" >Open Menu</div>
+                        <UlList 
+                            menu={props.menusList.mainmenu.menujson} 
+                            listClass='phonemenu' 
+                            icons={false} 
+                            LangClicked = {props.langChange} 
+                            config = {props.config}
+                            langList= {props.langList}
+                            />	
                     </div>
-                    {/* <HeaderAnimation /> */}
+                </div>
+            : <div>Loading</div>}
+                <HeaderAnimation />
                 </div>
             )
     }
-}
+
 
 const mapStateToProps = store => {
     return {
-        store
+        menusList: store.common.menusList,
+        config: store.common.config,
+        langList: store.common.langList,
+        translations: store.common.translations,
     }
 };
-
 const mapDispatchToProps = dispatch => ({
     langChange: lang => dispatch(langChange(lang))
 });
 
 const HomeHeaderContainer = connect(mapStateToProps, mapDispatchToProps)(HomeHeader);
-
 export default HomeHeaderContainer;

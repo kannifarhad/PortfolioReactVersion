@@ -27,7 +27,7 @@ const languageData = {
     "Subject...":"Subject...",
     "Send Message":"Send Message",
     "Type your message":"Type your message",
-    "sampletext":"resumelink",
+    "All":"All",
 };
 
 export default languageData;

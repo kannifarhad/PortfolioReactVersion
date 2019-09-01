@@ -1,7 +1,6 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import Contact from './Components/Contact';
@@ -14,6 +13,7 @@ import Error from './Pages/Error';
 
 
 const App = ({ store }) =>(
+ 
     <Provider store={store} >
                 <Router>
                     <Route path="/" render={ ( props ) => ( (props.location.pathname !== "/") && !(/\/([a-zA-Z]{2})([/]?)$/.test(props.location.pathname)) ?  
@@ -25,8 +25,8 @@ const App = ({ store }) =>(
                         <Route path="/:lang?/:type/:category?"  render = {props => <PostsList  {...props} /> } />
                         <Route component={Error} />
                     </Switch>    
-                        <Subscribe />   
-                        <Contact/> 
+                        {/* <Subscribe />    */}
+                        {/* <Contact/> */}
                 </Router>
             </Provider>
 );

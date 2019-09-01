@@ -2,11 +2,8 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 
 @font-face {
 	font-family: 'Glyphter';
-	src: url('../fonts/Glyphter.eot');
-	src: url('../fonts/Glyphter.eot?#iefix') format('embedded-opentype'),
-	url('../fonts/Glyphter.woff') format('woff'),
-	url('../fonts/Glyphter.ttf') format('truetype'),
-	url('../fonts/Glyphter.svg#Glyphter') format('svg');
+	src: url('../fonts/Glyphter.ttf') format('truetype');
+	src: url('../fonts/Glyphter.svg#Glyphter') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -495,6 +492,9 @@ select {
 	-ms-user-select: none;      /* IE 10+ */
 	user-select: none;
 }
+#lamps .lamp  img {
+	opacity: 0;
+}
 #lamps .lamp1 {
 	background: url(../img/lamp/1.png) no-repeat bottom center;
 	width:238px;
@@ -507,7 +507,6 @@ select {
 	position: absolute;
 	bottom: -130px;
 	left: -148px;
-	display: none;
 }
 
 #lamps .lamp2 {
@@ -522,7 +521,6 @@ select {
 	position: absolute;
 	bottom: -152px;
 	left: -163px;
-	display: none;
 }
 #lamps .lamp3 {
 	background: url(../img/lamp/3.png) no-repeat bottom center;
@@ -536,7 +534,6 @@ select {
 	position: absolute;
 	bottom: -128px;
 	left: -135px;
-	display: none;
 }
 #lamps .lamp4 {
 	background: url(../img/lamp/4.png) no-repeat bottom center;
@@ -550,7 +547,6 @@ select {
 	position: absolute;
 	bottom: -65px;
 	left: -75px;
-	display: none;
 }
 #lamps .lamp5 {
 	background: url(../img/lamp/5.png) no-repeat bottom center;
@@ -564,7 +560,6 @@ select {
 	position: absolute;
 	bottom: -62px;
 	left: -65px;
-	display: none;
 }
 .sitat {
 	padding:0px 40px;
@@ -652,7 +647,6 @@ select {
 	float:left;
 	overflow:hidden;
 	position:relative;
-	display: none;
 }
 .items img {
 	height: 100%;
@@ -1911,6 +1905,23 @@ ul.sochiallinks li a:hover {
 }*/
 /*phone Screen */
 
+ 
+ .fadeIn {
+	 opacity: 1 !important;
+	-webkit-transition: opacity 0.3s;
+    -moz-transition: opacity 0.3s;
+    -o-transition: opacity 0.3s;
+    transition: opacity 0.3s;
+ }
+
+ 
+ .fadeOut {
+	opacity: 0 !important;
+	-webkit-transition: opacity 0.3s;
+    -moz-transition: opacity 0.3s;
+    -o-transition: opacity 0.3s;
+    transition: opacity 0.3s;
+ }
 @media only screen and (min-width: 100px) and (max-width: 550px){
 	#menu {
 		display: none;
@@ -1951,7 +1962,6 @@ ul.sochiallinks li a:hover {
 		margin:5px auto 0px auto;
 	}
 	.blogitem .shortstory h1 {
-		margin-
 	}
 	.blogitem .imageblock, .imageblock .imageitem {
 		width: 100%;

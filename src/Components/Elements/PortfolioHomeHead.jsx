@@ -1,22 +1,37 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-
-function  PortfolioHead (props) {
-    var state = props.store.getState();
+function PortfolioHead(props) {
         return(
             <div className="portfoliohead">
-            	<h1>Featured Works</h1>
-                <p>Rich experience that I got, using the various technique of programming and designing enable to make high quality and interesting products. I specialize in creating all types of digital graphic designs, web designs and websites. There is a little piece of my works which I did for last year.</p>
+                <h1>{props.portfolioInfo.title}</h1>
+                <p>{props.portfolioInfo.description}</p>
                 <div className="clear"></div>
                 <ul className="filters">
-                    <li data-filter="all">All</li>
-                    {state.categoriesList.map(categorie => 
-                        (categorie.type == 'portfolio') ? <li key={categorie.id} data-filter={`.${categorie.slug}`}>{categorie.title} </li> : false
-                        )
-                    }
+                    <li data-filter="portfolio" onClick={() => props.categoryChange('portfolio')} className={(props.category == 'portfolio')? "active" : ""}>{props.languageData['All']}</li>
+                    {(typeof props.portfolioInfo['children'] !== 'undefined') ?
+                        props.portfolioInfo['children'].map(categorie => <li 
+                                key={categorie.id} 
+                                onClick={() => props.categoryChange(categorie.slug)} 
+                                className={(props.category == categorie.slug)? "active" : ""}
+                                data-filter={`.${categorie.slug}`}>{categorie.title} </li>)
+                        : ""}
                 </ul>
             </div>
         )
-}
+    }
 
-export default PortfolioHead;
+
+const mapStateToProps = (store, ownprops) => {
+    return {
+        config: store.common.config,
+		languageData: store.common.translations,
+        posts : store.posts,
+        categories: store.categories,
+        store,
+        ...ownprops, 
+    }
+};
+const ContainerPortfolioHead = connect(mapStateToProps, null)(PortfolioHead);
+
+export default ContainerPortfolioHead;

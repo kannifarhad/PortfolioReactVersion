@@ -1,23 +1,14 @@
-import {LANG_CHANGE, PORTFOLIO_CATEGORY_CHANGE}  from '../actions';
+import { combineReducers } from 'redux';
+import siteReducers from './sitereducers';
+import commonReducers from './common';
+import postsReducers from './posts';
+import categoryReducers from './categories';
 
-function siteReducer(state = {}, action) {
-    switch(action.type) {
-        case GET_CATEGORIES:
-            return state;
+const reducer = combineReducers({
+    site:siteReducers,
+    common:commonReducers,
+    posts:postsReducers,
+    categories:categoryReducers
+});
 
-    }
-}
-
-export default function reducer(state = {}, action){
-    switch(action.type){
-        case LANG_CHANGE:
-                state.config.lang = action.lang;
-                return state;
-
-        case PORTFOLIO_CATEGORY_CHANGE:
-            return [];
-
-        default:
-            return state;
-    }
-}
+export default reducer;

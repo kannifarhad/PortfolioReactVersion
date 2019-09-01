@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
+import {getCategory, getPost, getPostList} from '../../Redux/actions';
 
 function HomeSkills (props) {
     return (	
@@ -20,22 +20,24 @@ function HomeSkills (props) {
             <div className="skillsblock">
 				<h1>{props.languageData['Designer Skills']}</h1>
 				<ul className="skilllist design">
-                    {props.skills.design.map(skill => 
-                        <li key={skill.id}><p>{skill.name}</p> <span>{skill.level}</span>
-                            <div className="skillicon">
-                                <img className="svgicon" src={skill.icon} />
-                            </div>
-                        </li>
-                    )}
+					{(typeof props.posts['designer-skills'] != 'undefined') ? 
+						props.posts['designer-skills'].postslist.map(skill => 
+							<li key={skill.id}><p>{skill.title}</p> <span>{skill.shortstory}</span>
+								<div className="skillicon">
+									<img className="svgicon" src={skill.thumb_image} />
+								</div>
+							</li>
+                    	) :''}
 				</ul>
 			</div>
 
             <div className="skillsblock">
 				<h1>{props.languageData['Programming Skills']}</h1>
 				<ul className="skilllist programming">
-                {props.skills.programming.map(skill => 
-						<li key={skill.id}><p>{skill.name}</p> <span>{skill.level}</span> <img src={skill.icon} /></li>
-                    )}
+				{(typeof props.posts['programming-skills'] != 'undefined') ? 
+                props.posts['programming-skills'].postslist.map(skill => 
+						<li key={skill.id}><p>{skill.title}</p> <span>{skill.shortstory}</span> <img src={skill.thumb_image} /></li>
+                    ) :''}
                 </ul>
 			</div>
         </div>
@@ -44,10 +46,17 @@ function HomeSkills (props) {
 
 const mapStateToProps = (store) => {
     return {
-		config: store.config,
-		languageData: store.languageData
+		config: store.common.config,
+		languageData: store.common.translations,
+		posts : store.posts
     }
 };
 
-const HomeCont = connect(mapStateToProps, null)(HomeSkills);
+const mapDispatchToProps = dispatch => ({
+	getCategory: (lang, slug) => dispatch(getCategory(lang, slug)),
+	getPost: (lang, slug) => dispatch(getPost(lang, slug)),
+	getPostList: (lang, slug) => dispatch(getPostList(lang, slug)),
+	
+});
+const HomeCont = connect(mapStateToProps, mapDispatchToProps)(HomeSkills);
 export default HomeCont;

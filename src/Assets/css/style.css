@@ -69,6 +69,35 @@ select {
 	background:#0d1f33;
 	position:relative;
 }
+@-webkit-keyframes fadeIn {
+	0% {opacity: 0;}
+	100% {opacity: 1;}
+ }
+ 
+ @keyframes fadeIn {
+	0% {opacity: 0;}
+	100% {opacity: 1;}
+ }
+ 
+ .fadeIn {
+	-webkit-animation-name: fadeIn;
+	animation-name: fadeIn;
+ }
+
+ @-webkit-keyframes fadeOut {
+	0% {opacity: 1;}
+	100% {opacity: 0;}
+ }
+ 
+ @keyframes fadeOut {
+	0% {opacity: 1;}
+	100% {opacity: 0;}
+ }
+ 
+ .fadeOut {
+	-webkit-animation-name: fadeIn;
+	animation-name: fadeIn;
+ }
 
 #aboutme {
 	background:#ffa600;
@@ -492,6 +521,9 @@ select {
 	-ms-user-select: none;      /* IE 10+ */
 	user-select: none;
 }
+#lamps .lamp  img {
+	opacity: 0;
+}
 #lamps .lamp1 {
 	background: url(../img/lamp/1.png) no-repeat bottom center;
 	width:238px;
@@ -504,7 +536,6 @@ select {
 	position: absolute;
 	bottom: -130px;
 	left: -148px;
-	display: none;
 }
 
 #lamps .lamp2 {
@@ -519,7 +550,6 @@ select {
 	position: absolute;
 	bottom: -152px;
 	left: -163px;
-	display: none;
 }
 #lamps .lamp3 {
 	background: url(../img/lamp/3.png) no-repeat bottom center;
@@ -533,7 +563,6 @@ select {
 	position: absolute;
 	bottom: -128px;
 	left: -135px;
-	display: none;
 }
 #lamps .lamp4 {
 	background: url(../img/lamp/4.png) no-repeat bottom center;
@@ -547,7 +576,6 @@ select {
 	position: absolute;
 	bottom: -65px;
 	left: -75px;
-	display: none;
 }
 #lamps .lamp5 {
 	background: url(../img/lamp/5.png) no-repeat bottom center;
@@ -561,7 +589,6 @@ select {
 	position: absolute;
 	bottom: -62px;
 	left: -65px;
-	display: none;
 }
 .sitat {
 	padding:0px 40px;
@@ -649,7 +676,6 @@ select {
 	float:left;
 	overflow:hidden;
 	position:relative;
-	display: none;
 }
 .items img {
 	height: 100%;

@@ -1,7 +1,24 @@
 import React from 'react';
 
-function HeaderAnimation() {
-    return (
+class  HeaderAnimation extends React.Component {
+	constructor(props){
+		super(props);
+	}
+	componentDidMount() {
+		this.runAnimation();
+	}
+	runAnimation(){
+		var hippo = $("#farhad").attr("d");
+		TweenLite.set("svg", {visibility:"visible"})
+		var tl = new TimelineMax({repeat:-1, repeatDelay:2.5, delay:1});
+		tl.to("#farhad", 2, {morphSVG:"#hippo" , ease:Back.easeInOut}).to("#farhad", 2, {morphSVG:hippo,  ease:Back.easeInOut}, "+=2.5");
+	}
+	componentDidUpdate(prevVal){
+		this.runAnimation();
+	}
+
+    render() {
+		return (
 
         <div id="header">
             <svg version="1.1" id="svg2"  x="0px" y="0px" width="819.2px" height="561.298px" viewBox="0 0 819.2 561.298" styles="enable-background:new 0 0 819.2 561.298;" >
@@ -3520,7 +3537,9 @@ c-1.3,0-1.3,2,0,2C548.3,476.7,548.3,474.7,547,474.7z M564.3,462.7c-1.3,0-1.3,2,0
 </svg>
 
         </div>
-    )
+		
+	)
+	}
 }
 
 export default HeaderAnimation;
