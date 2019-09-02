@@ -202,7 +202,9 @@ $(document).ready(function () {
 
 
 	// });
-
+	function runLogosAnimation(){
+		console.log('asajhgkgvh');
+	}
 	$(".fancybox").fancybox({
 		padding: 0,
 		margin: 20,
@@ -241,19 +243,19 @@ $('.contactform').submit(function() {
 	
 });*/
 
-$(".logos").owlCarousel({
-	items : 4,
-	itemsCustom : false,
-	itemsDesktop : [1199,3],
-	itemsDesktopSmall : [980,2],
-	itemsTablet: [768,1],
-	itemsTabletSmall: false,
-	itemsMobile : [479,2],
-	pagination:false,
-	autoPlay : 3000,
-	stopOnHover: true,
-	autoHeight: false
-});
+// $(".logos").owlCarousel({
+// 	items : 4,
+// 	itemsCustom : false,
+// 	itemsDesktop : [1199,3],
+// 	itemsDesktopSmall : [980,2],
+// 	itemsTablet: [768,1],
+// 	itemsTabletSmall: false,
+// 	itemsMobile : [479,2],
+// 	pagination:false,
+// 	autoPlay : 3000,
+// 	stopOnHover: true,
+// 	autoHeight: false
+// });
 
 $("#portfolioscroll").owlCarousel({
 	items : 4,

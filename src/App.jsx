@@ -25,8 +25,8 @@ const App = ({ store }) =>(
                         <Route path="/:lang?/:type/:category?"  render = {props => <PostsList  {...props} /> } />
                         <Route component={Error} />
                     </Switch>    
-                        {/* <Subscribe />    */}
-                        {/* <Contact/> */}
+                        <Subscribe />   
+                        <Contact/>
                 </Router>
             </Provider>
 );

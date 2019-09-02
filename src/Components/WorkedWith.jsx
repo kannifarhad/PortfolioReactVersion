@@ -1,6 +1,7 @@
 import React from 'react';
 import {getCategory, getCategoryList, getPost, getPostList} from '../Redux/actions';
 import { connect } from 'react-redux';
+import OwlCarousel from 'react-owl-carousel';
 
 class WorkedWith extends React.Component {
     constructor(props){
@@ -28,7 +29,8 @@ class WorkedWith extends React.Component {
 					partners: this.props.store.posts[this.state.category] 
 				});
 			});
-		}
+        }
+        
     }
 
     componentDidUpdate(prevProps, prevState){
@@ -36,16 +38,19 @@ class WorkedWith extends React.Component {
             this.props.getPostList(this.props.config.lang,  this.state.category).then( response => {
 				this.setState({
 					works: this.props.store.posts[this.state.category] 
-				});
+                });
+                
 			});
         }
+        
+
     }
 
     componentDidCatch(error, info) {
         console.log('Error happened', error, info);
         this.setState({ hasError: true });
+              
     }
-
     render() {
         return(
             <div id="workedwith">
@@ -58,10 +63,14 @@ class WorkedWith extends React.Component {
     
                 <div className="workwith">
                     <div className="logos">
+                        <OwlCarousel className="owl-theme"
+                                    loop
+                                    margin={0}>
                         {(!this.state.hasError && typeof(this.state.partners) != 'undefined')?
                             this.state.partners.postslist.map(partner => 
-                            <a key={partner.id} href={partner.link} target="_blank" alt={partner.title}><img className="svg" src={partner.thumb_image} /></a>
+                            <a className={"item"} key={partner.id} href={partner.link} target="_blank" alt={partner.title}><img className="svg" src={partner.thumb_image} /></a>
                         ): ""}
+                        </OwlCarousel>
                     </div>
                 </div><div className="clear"></div>
             </div>

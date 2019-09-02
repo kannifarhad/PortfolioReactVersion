@@ -55,6 +55,14 @@ module.exports = {
     resolve: {
         extensions: ['.js', '.jsx', '.json', '*']
     },
+    plugins: [
+        // other plugins,
+        new webpack.ProvidePlugin({
+            $: 'jquery',
+            jQuery: 'jquery',
+            'window.jQuery': 'jquery'
+        }),
+    ],
     devServer: {
         port:8080,
         contentBase: path.resolve(__dirname, 'public'),
