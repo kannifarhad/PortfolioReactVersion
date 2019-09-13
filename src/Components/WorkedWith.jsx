@@ -35,11 +35,16 @@ class WorkedWith extends React.Component {
 
     componentDidUpdate(prevProps, prevState){
         if(prevState.category != this.state.category || prevProps.config.lang != this.props.config.lang ) {
-            this.props.getPostList(this.props.config.lang,  this.state.category).then( response => {
+            this.props.getCategory(this.props.config.lang , this.state.category).then( response => {
 				this.setState({
-					works: this.props.store.posts[this.state.category] 
-                });
-                
+					workedWithInfo: this.props.store.categories[this.state.category] 
+				});
+			});
+
+            this.props.getCategory(this.props.config.lang , this.state.category).then( response => {
+				this.setState({
+					workedWithInfo: this.props.store.categories[this.state.category] 
+				});
 			});
         }
         
@@ -47,7 +52,6 @@ class WorkedWith extends React.Component {
     }
 
     componentDidCatch(error, info) {
-        console.log('Error happened', error, info);
         this.setState({ hasError: true });
               
     }

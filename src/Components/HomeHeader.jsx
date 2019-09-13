@@ -20,11 +20,12 @@ function HomeHeader (props){
                             LangClicked = {props.langChange} 
                             config = {props.config}
                             langList= {props.langList}
+                            languageData={props.translations}
                             />
                     </div>
                     
                     <div id="phonemenu">
-                        <div className="menyunuach" >Open Menu</div>
+                        <div className="menyunuach">Open Menu</div>
                         <UlList 
                             menu={props.menusList.mainmenu.menujson} 
                             listClass='phonemenu' 
@@ -32,6 +33,7 @@ function HomeHeader (props){
                             LangClicked = {props.langChange} 
                             config = {props.config}
                             langList= {props.langList}
+                            languageData={props.translations}
                             />	
                     </div>
                 </div>

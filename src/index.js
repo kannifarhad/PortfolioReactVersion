@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
+import { Provider } from 'react-redux';
 import store from './Redux/store';
 import {getConfigs, getLangList, getMenus, getTranslations} from './Redux/actions';
-//import { resolve } from 'path';
 
 store.dispatch(getConfigs()).then(response=> {
     store.dispatch(getTranslations(response.data.lang));
@@ -13,7 +13,11 @@ store.dispatch(getConfigs()).then(response=> {
     });
     
 }).then(result => {
-    ReactDOM.render( <App store={store} /> , document.getElementById("root"));
+    ReactDOM.render(
+        <Provider store={store} >
+            <App  /> 
+        </Provider>
+        , document.getElementById("root"));
 });
 
 

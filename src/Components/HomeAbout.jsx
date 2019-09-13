@@ -40,6 +40,28 @@ class HomeAbout extends React.Component {
 			});
 		}
 	}
+	componentDidUpdate(prevProps, prevState){
+        if(prevProps.config.lang != this.props.config.lang) {
+
+			this.props.getPost(this.props.config.lang , 'farhad-aliyev_53').then( response => {
+				this.setState({
+					aboutMe: this.props.store.posts['farhad-aliyev_53'] 
+				});
+			});
+			
+			this.props.getPostList(this.props.config.lang, 'designer-skills').then( response => {
+				this.setState({
+					designerSkills: this.props.store.posts['designer-skills'] 
+				});
+			});
+
+			this.props.getPostList(this.props.config.lang, 'programming-skills').then( response => {
+				this.setState({
+					programmerSkills: this.props.store.posts['programming-skills'] 
+				});
+			});
+        }
+    }
 	render() {
 		return(
 			<div id="aboutme">

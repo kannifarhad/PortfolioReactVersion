@@ -5,10 +5,6 @@ import {Helmet} from "react-helmet";
 import PortfolioItemsList from './Elements/PortfolioItemsList';
 import PortfolioHomeHead from './Elements/PortfolioHomeHead';
 
-import portfolio from '../data/portfolio';
-
-
-
 class PortfolioList extends React.Component {
     constructor(props) {
         super(props);

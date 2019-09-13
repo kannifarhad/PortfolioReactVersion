@@ -50,7 +50,23 @@ class HomeMyServices extends React.Component {
 				});
 			});
 		}
-	}
+    }
+    
+    componentDidUpdate(prevProps, prevState){
+        if(prevProps.config.lang != this.props.config.lang) {
+            this.props.getCategory(this.props.config.lang , 'services').then( response => {
+                this.setState({
+                    aboutServices: this.props.store.categories['services'] 
+                });
+            });
+            this.props.getPostList(this.props.config.lang, 'services').then( response => {
+                this.setState({
+                    services: this.props.store.posts['services'] 
+                });
+            });
+        }
+        
+    }
     render() {
         return(
             <div>

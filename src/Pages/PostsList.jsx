@@ -1,8 +1,6 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
 
-import types from '../data/types';
-
 import PortfolioList  from '../Components/PortfolioList';
 import BlogList  from '../Components/BlogList';
 import Error from './Error';

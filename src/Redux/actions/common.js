@@ -2,6 +2,7 @@ export const GET_CONFIG = 'GET_CONFIG';
 export const GET_LANGLIST = 'GET_LANGLIST';
 export const GET_TRANSLATIONS = 'GET_TRANSLATIONS';
 export const GET_MENUS = 'GET_MENUS';
+export const SEND_CONTACT = 'SEND_CONTACT';
 
 export function getConfigs() {
     return {
@@ -41,5 +42,16 @@ export function getMenus(lang) {
             url: '/config/getmenus'
         },
         body: { lang }
+    };
+}
+
+export function contactSend(data) {
+    return {
+        type: SEND_CONTACT,
+        request: {
+            method: 'post',
+            url: '/form/sendmessage'
+        },
+        body: data
     };
 }

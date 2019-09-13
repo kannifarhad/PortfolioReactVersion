@@ -1,5 +1,5 @@
 
-import {LANG_CHANGE, PORTFOLIO_CATEGORY_CHANGE, PHONE_MENU_TOGGLE}  from '../actions';
+import {PORTFOLIO_CATEGORY_CHANGE, PHONE_MENU_TOGGLE}  from '../actions';
 
 function siteReducer(state = {}, action) {
     switch(action.type) {
@@ -11,12 +11,7 @@ function siteReducer(state = {}, action) {
 
 export default function reducer(state = {}, action){
     switch(action.type){
-        case LANG_CHANGE:
-                console.log(state);
-                //state.config.lang = action.lang;
-                return state;
-                // return state.config.filter(lang => !action.lang);
-
+       
         case PORTFOLIO_CATEGORY_CHANGE:
             return [];
 

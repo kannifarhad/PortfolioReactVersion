@@ -1,4 +1,4 @@
-import {GET_CONFIG ,GET_MENUS, GET_LANGLIST, GET_TRANSLATIONS} from '../actions';
+import {LANG_CHANGE, GET_CONFIG ,GET_MENUS, GET_LANGLIST, GET_TRANSLATIONS, SEND_CONTACT} from '../actions';
 
 export default function reducer(state = {}, action) {
 
@@ -7,6 +7,8 @@ export default function reducer(state = {}, action) {
             return Object.assign({}, state, {
                 config: action.data
             });
+        case LANG_CHANGE:
+            return {...state, config: {...state.config, lang:action.lang}};
 
         case GET_MENUS:
             return Object.assign({}, state, {
@@ -16,6 +18,11 @@ export default function reducer(state = {}, action) {
         case GET_LANGLIST:
             return Object.assign({}, state, {
                 langList: action.data
+            });
+
+        case SEND_CONTACT:
+            return Object.assign({}, state, {
+                contactMessage: action.data
             });
 
         case GET_TRANSLATIONS:

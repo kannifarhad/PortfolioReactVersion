@@ -1,9 +1,5 @@
 import React from 'react';
-
 import UlList from './Elements/UlLlist';
-
-import mainMenu from '../data/menu';
-import categories from '../data/categories';
 
 class InnerHeader extends React.Component {
 

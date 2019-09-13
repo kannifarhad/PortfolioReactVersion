@@ -45,11 +45,16 @@ class HomePortfolio extends React.Component{
 				this.setState({
 					works: this.props.store.posts[this.state.category] 
 				});
+            });
+            
+            this.props.getCategory(this.props.config.lang , 'portfolio').then( response => {
+				this.setState({
+					portfolioInfo: this.props.store.categories['portfolio'] 
+				});
 			});
         }
     }
     componentDidCatch(error, info) {
-        console.log('Error happened', error, info);
         this.setState({ hasError: true });
     }
     render() {

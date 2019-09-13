@@ -31,15 +31,16 @@ class Contact extends React.Component {
                 }
                 data[refName] = refValue;
             }
-
-        console.log(data);
-        this.setState({
-            sending: true
-        });
-
-        // this.props.contactSend(data).then(response =>{
-        //     console.log(response);
-        // });
+            this.setState({
+                sending: true
+            });
+            this.props.contactSend(data).then(response => {
+                this.setState({
+                    sending: false,
+                    contactMessage: response,
+                });
+            });
+       
     }
 
     render() {
