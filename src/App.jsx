@@ -16,6 +16,7 @@ class App extends React.Component{
         super(props);
         this.state = {}
     }
+    
     componentDidUpdate(prevProps, prevState){
         if(prevProps.config.lang != this.props.config.lang) {
             this.props.getTranslations(this.props.config.lang);
@@ -27,12 +28,13 @@ class App extends React.Component{
         return (
             <Router>
                 <Route path="/" render={ ( props ) => ( (props.location.pathname !== "/") && !(/\/([a-zA-Z]{2})([/]?)$/.test(props.location.pathname)) ?  
-                            <InnerHeader {...props} /> 
+                           <InnerHeader {...props} />  
                                 : "" )} />
                 <Switch>
                     <Route exact path="/:lang?" render={ props => <Home {...props} /> } />
-                    <Route path="/:lang?/:type/:category?/view/:post" render = {props => <PostsPage  {...props} /> } />
-                    <Route path="/:lang?/:type/:category?"  render = {props => <PostsList  {...props} /> } />
+                    <Route path="/:lang?/:category?/view/:post" render = {props => <PostsPage  {...props} /> } />
+                    <Route path="/:lang?/:category/page/:page" render = {props => <PostsList  {...props} /> } />
+                    <Route path="/:lang?/:category?" render = {props => <PostsList  {...props} /> } />
                     <Route component={Error} />
                 </Switch>    
                     <Subscribe />   

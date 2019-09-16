@@ -17,7 +17,6 @@ class HomePortfolio extends React.Component{
         this.categoryChange = this.categoryChange.bind(this);
     }
     categoryChange(slug){
-        console.log("category changed", slug);
         this.setState({
             category: slug
         });

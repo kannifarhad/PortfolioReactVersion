@@ -1,51 +1,42 @@
 import React from 'react';
 import UlList from './Elements/UlLlist';
+import { connect } from 'react-redux';
 
-class InnerHeader extends React.Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            menu: mainMenu,
-            categorySlug: this.props.match.params.category,
-            categoryList: null,
-            typeList: null
-        }
-        this.handleLangChange = this.handleLangChange.bind(this);
-    }
-
-
-    componentWillMount(){
-      this.setState({
-            categoryList:categories
-      });
-    }
-    
-    handleLangChange(lang) {
-        this.props.handleAppLangChange(lang);
-    }
-    
-    render() {
-        return(
-            <div className="projectinsidehead">
-                <div className="headertop">
-                    <div className="logoname"><span>Kanni Farhad</span></div>
-                    <div className="headermenu">
-                        <UlList 
-                                lang={this.props.lang}
-                                LangClicked={this.handleLangChange} 
-                                menu={this.props.menuData} 
-                                config={this.props.config}
-                                listClass='headmenu'
-                                icons={true}
-                                categorySlug={this.state.categorySlug} />
-                    </div>
-
-                <div className="clear"></div>
+function InnerHeader(props) {
+    return(
+        <div className="projectinsidehead">
+            <div className="headertop">
+                <div className="logoname"><span>Kanni Farhad</span></div>
+                {(typeof props.menusList!= 'undefined')?
+                <div className="headermenu">
+                    <UlList 
+                        menu={props.menusList.insidemenu.menujson} 
+                        listClass='headmenu' 
+                        icons={true} 
+                        LangClicked = {props.langChange} 
+                        config = {props.config}
+                        langList= {props.langList}
+                        languageData={props.translations}
+                        />
                 </div>
+                : <div>Loading</div>}
+            <div className="clear"></div>
             </div>
-        )
-    }
+        </div>
+    )
 }
 
-export default InnerHeader;
+const mapStateToProps = store => {
+    return {
+        menusList: store.common.menusList,
+        config: store.common.config,
+        langList: store.common.langList,
+        translations: store.common.translations,
+    }
+};
+const mapDispatchToProps = dispatch => ({
+    langChange: lang => dispatch(langChange(lang))
+});
+
+const InnerHeaderContainer = connect(mapStateToProps, mapDispatchToProps)(InnerHeader);
+export default InnerHeaderContainer;

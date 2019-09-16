@@ -10,7 +10,7 @@ export default function UlLlist(props) {
     return(
         <ul className={props.listClass}>
             {props.menu.map(item =><li key={item.id}>
-                                        <NavLink isActive={checkActive} to={`${props.config.lang}/${item.link}`} >
+                                        <NavLink isActive={checkActive} to={`/${props.config.lang}/${item.link}`} >
                                             {(props.icons) ? <span className={`icons ${item.icon}`}></span> : ''}
                                             <span className='menutitle'>{item.name}</span>
                                         </NavLink>

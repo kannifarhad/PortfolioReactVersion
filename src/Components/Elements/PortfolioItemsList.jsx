@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 
 function PortfolioItemsList(props){
+    //console.log('PortfolioItemsList',props);
         function checkColorValue(elem, tag){
             try {
                 if(elem.hasOwnProperty(tag)){

@@ -2,8 +2,11 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 
 @font-face {
 	font-family: 'Glyphter';
-	src: url('../fonts/Glyphter.ttf') format('truetype');
-	src: url('../fonts/Glyphter.svg#Glyphter') format('svg');
+	src: url('../fonts/Glyphter.eot');
+	src: url('../fonts/Glyphter.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/Glyphter.woff') format('woff'),
+	url('../fonts/Glyphter.ttf') format('truetype'),
+	url('../fonts/Glyphter.svg#Glyphter') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -1226,7 +1229,7 @@ transition: all 0.3s ease-in-out;
 	background:#ffa600;
 	padding:15px 0px 15px 0px;
 }
-.categories a {
+.categories a , .categories li {
 	display: inline-block;
 	margin: 10px 2px;
 	color: #0d1f33;
@@ -1242,11 +1245,11 @@ transition: all 0.3s ease-in-out;
 	-o-transition: all 0.3s ease-in-out;
 	transition: all 0.3s ease-in-out;
 }
-.categories a.active{
+.categories a.active, .categories li.active{
     color: #0d1f33;
     background: #f1f1f1;
 }
-.categories a:hover {
+.categories a:hover, .categories li:hover {
 	background: #0d1f33;
 	color:#ffa600;
 	-webkit-transition: all 0.3s ease-in-out;

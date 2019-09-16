@@ -13,9 +13,6 @@ class  HeaderAnimation extends React.Component {
 		var tl = new TimelineMax({repeat:-1, repeatDelay:2.5, delay:1});
 		tl.to("#farhad", 2, {morphSVG:"#hippo" , ease:Back.easeInOut}).to("#farhad", 2, {morphSVG:hippo,  ease:Back.easeInOut}, "+=2.5");
 	}
-	// componentDidUpdate(prevVal){
-	// 	this.runAnimation();
-	// }
 
     render() {
 		return (
