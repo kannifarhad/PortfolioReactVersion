@@ -6,6 +6,8 @@ import PortfolioList  from '../Components/PortfolioList';
 import BlogList  from '../Components/BlogList';
 import Error from './Error';
 import PagesHeader from '../Components/PagesHeader';
+import Loading from './Loading';
+
 
 class PostsCategory extends React.Component {
     constructor(props) {
@@ -17,7 +19,7 @@ class PostsCategory extends React.Component {
             error: false,
             categoryInfo: false,
             categoryList: false,
-            currentComponent: false,
+            currentComponent: Loading,
             postsList: undefined,
             listComponents : {
                 PortfolioList: PortfolioList,
@@ -33,30 +35,14 @@ class PostsCategory extends React.Component {
         });
     }
 
-    getTypeInfo(typesList, typeSlug, categorySlug) {
+    setComponentInfo() {
         try{
-            let typeInfo = typesList.filter(type=> ( type.slug == typeSlug ) ? type :'')[0];
-
-            if (typeof(typeInfo) == 'undefined' || typeof(this.state.listComponents[typeInfo.listComponent]) == 'undefined' ) {
-                throw new Error('Page not found');
+            if (typeof(this.state.categoryInfo.list_template) == 'undefined' || typeof(this.state.listComponents[this.state.categoryInfo.list_template]) == 'undefined' ) {
+                throw new Error('Page design not found');
             } else {
-                let pageInfo = typeInfo;
-                if(typeof(categorySlug) != 'undefined') {
-                    let categoryInfo = typeInfo.categories.filter(category=> ( category.slug == categorySlug ) ? category :'')[0];
-                    if (typeof(categoryInfo) == 'undefined') {
-                        throw new Error('Category not found');
-                   } else {
-                       pageInfo = categoryInfo;
-                   }
-                }
-                let currentComponent = this.state.listComponents[typeInfo.listComponent];
+                let currentComponent = this.state.listComponents[this.state.categoryInfo.list_template];
                 this.setState({
-                    typeInfo,
-                    pageInfo,
-                    typeSlug,
-                    categorySlug,
-                    currentComponent,
-                    page: this.props.match.params.page,
+                    currentComponent
                 });
             }
         } catch(error) {
@@ -100,11 +86,6 @@ class PostsCategory extends React.Component {
             });
         }
 
-        this.setState({
-            currentComponent: PortfolioList
-        });
-
-       // this.getTypeInfo(types, this.props.match.params.type, this.props.match.params.category);
     }
 
     componentDidUpdate(prevProps, prevState){
@@ -117,8 +98,13 @@ class PostsCategory extends React.Component {
             
             this.props.getCategory(this.props.config.lang , this.state.category).then( response => {
                 this.setCategoryList(this.props.store.categories[this.state.category]);
-
-			});
+            });
+            
+        }
+        console.log(prevState.currentComponent);
+        if(prevState.currentComponent != this.state.listComponents[this.state.categoryInfo.list_template] && prevState.currentComponent == Error ){
+            console.log('componentDidUpdate', this.state.listComponents[this.state.categoryInfo.list_template]);
+            this.setComponentInfo();
         }
     }
 
