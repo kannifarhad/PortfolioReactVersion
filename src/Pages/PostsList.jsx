@@ -89,6 +89,10 @@ class PostsCategory extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState){
+        if(prevState.category != this.props.match.params.category) {
+            this.categoryChange(this.props.match.params.category);
+        }
+
         if(prevState.category != this.state.category || prevProps.config.lang != this.props.config.lang ) {
             this.props.getPostList(this.props.config.lang,  this.state.category).then( response => {
 				this.setState({
@@ -101,10 +105,14 @@ class PostsCategory extends React.Component {
             });
             
         }
-        console.log(prevState.currentComponent);
-        if(prevState.currentComponent != this.state.listComponents[this.state.categoryInfo.list_template] && prevState.currentComponent == Error ){
-            console.log('componentDidUpdate', this.state.listComponents[this.state.categoryInfo.list_template]);
-            this.setComponentInfo();
+        if(typeof(this.state.listComponents[this.state.categoryInfo.list_template]) != 'undefined'){
+            if(prevState.currentComponent != this.state.listComponents[this.state.categoryInfo.list_template]){
+                this.setComponentInfo();
+            }
+        } else {
+            if(prevState.currentComponent != Error){
+                this.setComponentInfo();
+            }
         }
     }
 
@@ -118,8 +126,6 @@ class PostsCategory extends React.Component {
         )
     }
 }
-
-
 
 const mapStateToProps = (store, ownProps) => {
     return {
