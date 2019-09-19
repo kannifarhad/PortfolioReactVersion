@@ -15,12 +15,13 @@ class PostsPage extends React.Component {
 
         this.state = {
             category: props.match.params.category,
+            postSlug: props.match.params.post,
             error: false,
             categoryInfo: false,
             categoryList: false,
             currentComponent: Loading,
             postsList: undefined,
-            postFull: null,
+            postFull: false,
             pageComponents : {
                 PortfolioPage: PortfolioPage,
                 // BlogList: BlogList
@@ -35,12 +36,28 @@ class PostsPage extends React.Component {
         });
     }
 
+    setCategoryList(categoryInfo){
+        if(categoryInfo.children.length == 0){
+            this.props.getCategory(this.props.config.lang , categoryInfo.parent).then( response => {
+                this.setState({
+                    categoryList: this.props.store.categories[categoryInfo.parent],
+                    categoryInfo
+				});
+			});
+        }else{
+            this.setState({
+                categoryList: categoryInfo,
+                categoryInfo
+            });
+        }
+    }
+
     setComponentInfo() {
         try{
-            if (typeof(this.state.categoryInfo.full_template) == 'undefined' || typeof(this.state.listComponents[this.state.categoryInfo.full_template]) == 'undefined' ) {
+            if (typeof(this.state.categoryInfo.full_template) == 'undefined' || typeof(this.state.pageComponents[this.state.categoryInfo.full_template]) == 'undefined' ) {
                 throw new Error('Page design not found');
             } else {
-                let currentComponent = this.state.listComponents[this.state.categoryInfo.full_template];
+                let currentComponent = this.state.pageComponents[this.state.categoryInfo.full_template];
                 this.setState({
                     currentComponent
                 });
@@ -69,12 +86,32 @@ class PostsPage extends React.Component {
                 });
             });
         }
+
+        if(!this.state.postFull) {
+            this.props.getPost(this.props.config.lang,  this.state.postSlug).then( response => {
+                this.setState({
+                    postFull: this.props.store.posts[this.state.postSlug] 
+                });
+            });
+        }
     }
 
     componentDidUpdate(prevProps, prevState){
         if(prevState.category != this.props.match.params.category) {
             this.setState({
                 category:  this.props.match.params.category
+            });
+        }
+
+        if(prevState.postSlug != this.props.match.params.post) {
+            this.setState({
+                postSlug:  this.props.match.params.post
+            });
+
+            this.props.getPost(this.props.config.lang,  this.state.postSlug).then( response => {
+                this.setState({
+                    postFull: this.props.store.posts[this.state.postSlug] 
+                });
             });
         }
 
@@ -88,15 +125,20 @@ class PostsPage extends React.Component {
             this.props.getCategory(this.props.config.lang , this.state.category).then( response => {
                 this.setCategoryList(this.props.store.categories[this.state.category]);
             });
+
+
             
         }
-        if(typeof(this.state.listComponents[this.state.categoryInfo.list_template]) != 'undefined'){
-            if(prevState.currentComponent != this.state.listComponents[this.state.categoryInfo.list_template]){
-                this.setComponentInfo();
-            }
-        } else {
-            if(prevState.currentComponent != Error){
-                this.setComponentInfo();
+        console.log('categoryInfo', this.state.categoryInfo);
+        if(this.state.categoryInfo) {
+            if(typeof(this.state.pageComponents[this.state.categoryInfo.full_template]) != 'undefined'){
+                if(prevState.currentComponent != this.state.pageComponents[this.state.categoryInfo.full_template]){
+                    this.setComponentInfo();
+                }
+            } else {
+                if(prevState.currentComponent != Error){
+                    this.setComponentInfo();
+                }
             }
         }
     }
@@ -110,7 +152,7 @@ class PostsPage extends React.Component {
         return (
             <div>
                 <PagesHeader categoryList={this.state.categoryList} category={this.state.category} categoryChange={this.categoryChange} />
-                {/* <ComponentName postFull={this.state.postFull} pageInfo={this.state.categoryInfo} /> */}
+                <ComponentName postFull={this.state.postFull} pageInfo={this.state.categoryInfo} />
             </div>
         )
     }
