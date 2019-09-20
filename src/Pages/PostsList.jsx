@@ -21,6 +21,7 @@ class PostsCategory extends React.Component {
             categoryList: false,
             currentComponent: Loading,
             postsList: undefined,
+            loadTrue: true,
             listComponents : {
                 PortfolioList: PortfolioList,
                 BlogList: BlogList
@@ -55,35 +56,41 @@ class PostsCategory extends React.Component {
        
     }
 
-    setCategoryList(categoryInfo){
-        if(categoryInfo.children.length == 0){
-            this.props.getCategory(this.props.config.lang , categoryInfo.parent).then( response => {
+    getCategories(){
+        this.props.getCategory(this.props.config.lang , this.state.category).then( response => {
+            let categoryInfo = this.props.store.categories[this.state.category];
+
+            if(categoryInfo.children.length == 0){
+                this.props.getCategory(this.props.config.lang , categoryInfo.parent).then( response => {
+                    this.setState({
+                        categoryList: this.props.store.categories[categoryInfo.parent],
+                        categoryInfo
+                    });
+                });
+            }else{
                 this.setState({
-                    categoryList: this.props.store.categories[categoryInfo.parent],
+                    categoryList: categoryInfo,
                     categoryInfo
-				});
-			});
-        }else{
+                });
+            }
+        });
+    }
+
+    getPostList(){
+        this.props.getPostList(this.props.config.lang,  this.state.category).then( response => {
             this.setState({
-                categoryList: categoryInfo,
-                categoryInfo
+                postsList: this.props.store.posts[this.state.category] 
             });
-        }
+        });
     }
 
     componentWillMount() {
         if(!this.state.categoryInfo) {
-			this.props.getCategory(this.props.config.lang , this.state.category).then( response => {
-                this.setCategoryList(this.props.store.categories[this.state.category]);
-			});
+            this.getCategories();
         }
 
         if(!this.state.postsList) {
-            this.props.getPostList(this.props.config.lang,  this.state.category).then( response => {
-                this.setState({
-                    postsList: this.props.store.posts[this.state.category] 
-                });
-            });
+           this.getPostList();
         }
 
     }
@@ -94,17 +101,10 @@ class PostsCategory extends React.Component {
         }
 
         if(prevState.category != this.state.category || prevProps.config.lang != this.props.config.lang ) {
-            this.props.getPostList(this.props.config.lang,  this.state.category).then( response => {
-				this.setState({
-					postsList: this.props.store.posts[this.state.category] 
-				});
-            });
-            
-            this.props.getCategory(this.props.config.lang , this.state.category).then( response => {
-                this.setCategoryList(this.props.store.categories[this.state.category]);
-            });
-            
+            this.getPostList();
+            this.getCategories();
         }
+
         if(typeof(this.state.listComponents[this.state.categoryInfo.list_template]) != 'undefined'){
             if(prevState.currentComponent != this.state.listComponents[this.state.categoryInfo.list_template]){
                 this.setComponentInfo();
@@ -119,9 +119,12 @@ class PostsCategory extends React.Component {
     render(){
         let ComponentName = this.state.currentComponent;
         return (
-            <div>
+            <div className={"projectwrapper"}>
                 <PagesHeader categoryList={this.state.categoryList} category={this.state.category} categoryChange={this.categoryChange} />
                 <ComponentName pageInfo={this.state.categoryInfo} postsList={this.state.postsList}/>
+                {(this.state.loadTrue) ?
+                <div className={"sitebutton"}>{this.props.languageData['Load More']}</div>
+                :""}
             </div>
         )
     }

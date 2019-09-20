@@ -36,20 +36,40 @@ class PostsPage extends React.Component {
         });
     }
 
-    setCategoryList(categoryInfo){
-        if(categoryInfo.children.length == 0){
-            this.props.getCategory(this.props.config.lang , categoryInfo.parent).then( response => {
+    getCategories(){
+        this.props.getCategory(this.props.config.lang , this.state.category).then( response => {
+            let categoryInfo = this.props.store.categories[this.state.category];
+
+            if(categoryInfo.children.length == 0){
+                this.props.getCategory(this.props.config.lang , categoryInfo.parent).then( response => {
+                    this.setState({
+                        categoryList: this.props.store.categories[categoryInfo.parent],
+                        categoryInfo
+                    });
+                });
+            }else{
                 this.setState({
-                    categoryList: this.props.store.categories[categoryInfo.parent],
+                    categoryList: categoryInfo,
                     categoryInfo
-				});
-			});
-        }else{
+                });
+            }
+        });
+    }
+
+    getPostList(){
+        this.props.getPostList(this.props.config.lang,  this.state.category).then( response => {
             this.setState({
-                categoryList: categoryInfo,
-                categoryInfo
+                postsList: this.props.store.posts[this.state.category] 
             });
-        }
+        });
+    }
+
+    getPostFull(){
+        this.props.getPost(this.props.config.lang,  this.state.postSlug).then( response => {
+            this.setState({
+                postFull: this.props.store.posts[this.state.postSlug] 
+            });
+        });
     }
 
     setComponentInfo() {
@@ -74,29 +94,20 @@ class PostsPage extends React.Component {
 
     componentWillMount() {
         if(!this.state.categoryInfo) {
-			this.props.getCategory(this.props.config.lang , this.state.category).then( response => {
-                this.setCategoryList(this.props.store.categories[this.state.category]);
-			});
+            this.getCategories();
         }
 
         if(!this.state.postsList) {
-            this.props.getPostList(this.props.config.lang,  this.state.category).then( response => {
-                this.setState({
-                    postsList: this.props.store.posts[this.state.category] 
-                });
-            });
+            this.getPostList();
         }
 
         if(!this.state.postFull) {
-            this.props.getPost(this.props.config.lang,  this.state.postSlug).then( response => {
-                this.setState({
-                    postFull: this.props.store.posts[this.state.postSlug] 
-                });
-            });
+            this.getPostFull();
         }
     }
 
     componentDidUpdate(prevProps, prevState){
+
         if(prevState.category != this.props.match.params.category) {
             this.setState({
                 category:  this.props.match.params.category
@@ -106,30 +117,16 @@ class PostsPage extends React.Component {
         if(prevState.postSlug != this.props.match.params.post) {
             this.setState({
                 postSlug:  this.props.match.params.post
-            });
-
-            this.props.getPost(this.props.config.lang,  this.state.postSlug).then( response => {
-                this.setState({
-                    postFull: this.props.store.posts[this.state.postSlug] 
-                });
+            }, () => {  
+                this.getPostFull(); 
             });
         }
 
         if(prevState.category != this.state.category || prevProps.config.lang != this.props.config.lang ) {
-            this.props.getPostList(this.props.config.lang,  this.state.category).then( response => {
-				this.setState({
-					postsList: this.props.store.posts[this.state.category] 
-				});
-            });
-            
-            this.props.getCategory(this.props.config.lang , this.state.category).then( response => {
-                this.setCategoryList(this.props.store.categories[this.state.category]);
-            });
-
-
-            
+            this.getPostList();
+            this.getCategories();
         }
-        console.log('categoryInfo', this.state.categoryInfo);
+
         if(this.state.categoryInfo) {
             if(typeof(this.state.pageComponents[this.state.categoryInfo.full_template]) != 'undefined'){
                 if(prevState.currentComponent != this.state.pageComponents[this.state.categoryInfo.full_template]){
@@ -141,10 +138,6 @@ class PostsPage extends React.Component {
                 }
             }
         }
-    }
-
-    getDatasFromApi() {
-        this.generatePage(types, this.props.match.params.type, this.props.match.params.category, about);
     }
 
     render(){
