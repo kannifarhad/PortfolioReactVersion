@@ -8,7 +8,7 @@ class WorkedWith extends React.Component {
 		super(props);
 		this.state = {
 			workedWithInfo : false,
-            partners: undefined,
+            partners: [],
             category: 'i-work-with',
             hasError:false
         }
@@ -23,7 +23,7 @@ class WorkedWith extends React.Component {
 			});
 		}
 
-		if(!this.state.partners) {
+		if(this.state.partners.length == 0) {
 			this.props.getPostList(this.props.config.lang,  this.state.category).then( response => {
 				this.setState({
 					partners: this.props.store.posts[this.state.category] 
@@ -40,10 +40,9 @@ class WorkedWith extends React.Component {
 					workedWithInfo: this.props.store.categories[this.state.category] 
 				});
 			});
-
-            this.props.getCategory(this.props.config.lang , this.state.category).then( response => {
+            this.props.getPostList(this.props.config.lang,  this.state.category).then( response => {
 				this.setState({
-					workedWithInfo: this.props.store.categories[this.state.category] 
+					partners: this.props.store.posts[this.state.category] 
 				});
 			});
         }
@@ -53,9 +52,9 @@ class WorkedWith extends React.Component {
 
     componentDidCatch(error, info) {
         this.setState({ hasError: true });
-              
     }
     render() {
+        console.log(this.state);
         return(
             <div id="workedwith">
                 <div className="workedhead">
@@ -67,15 +66,15 @@ class WorkedWith extends React.Component {
     
                 <div className="workwith">
                     <div className="logos">
-                        <OwlCarousel className="owl-theme"
-                                    loop
-                                    margin={0}>
-                        {(!this.state.hasError && typeof(this.state.partners) != 'undefined')?
-                            this.state.partners.postslist.map(partner => 
-                            <a className={"item"} key={partner.id} href={partner.link} target="_blank" alt={partner.title}><img className="svg" src={partner.thumb_image} /></a>
-                        ): ""}
+                    {(typeof(this.state.partners.postslist) != 'undefined')?
+                        <OwlCarousel className="owl-theme" loop margin={0}>
+                            {this.state.partners.postslist.map(partner => 
+                            <a className={"item"} key={partner.id} href={partner.shortstory} target="_blank" alt={partner.title}><img className="svg" src={partner.thumb_image} /></a>
+                            )}
                         </OwlCarousel>
+                         : ""}
                     </div>
+                    
                 </div><div className="clear"></div>
             </div>
         )

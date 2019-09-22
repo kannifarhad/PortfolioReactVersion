@@ -7,7 +7,6 @@ function PortfolioPage (props) {
         function returnFullstory(){
             return { __html : props.postFull.fullstory }
         }
-        console.log(props);
         return(
             <React.Fragment>
                 {(props.postFull != false) ? 
@@ -22,13 +21,14 @@ function PortfolioPage (props) {
                         <div className="projecttitle"><h1>{props.postFull.title}</h1></div>
                         <div className="projectstory"><p>{props.postFull.shortstory}</p></div>
                     </div>
+                    <SochialShare />
+
                     <div className="projectfull">
                         <div className="articlecontent" dangerouslySetInnerHTML={returnFullstory()}>
                         </div>
                     </div>
                 </React.Fragment>
                 : "Loading " }
-                                {/* <SochialShare {...this.props} /> */}
 
             </React.Fragment>
         )

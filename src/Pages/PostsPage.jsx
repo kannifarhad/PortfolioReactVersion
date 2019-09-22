@@ -122,9 +122,10 @@ class PostsPage extends React.Component {
             });
         }
 
-        if(prevState.category != this.state.category || prevProps.config.lang != this.props.config.lang ) {
+        if(prevProps.config.lang != this.props.config.lang ) {
             this.getPostList();
             this.getCategories();
+            this.getPostFull();
         }
 
         if(this.state.categoryInfo) {

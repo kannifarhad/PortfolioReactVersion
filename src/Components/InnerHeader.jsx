@@ -1,6 +1,7 @@
 import React from 'react';
 import UlList from './Elements/UlLlist';
 import { connect } from 'react-redux';
+import {langChange} from '../Redux/actions';
 
 function InnerHeader(props) {
     return(

@@ -14,14 +14,14 @@ class PostsCategory extends React.Component {
         super(props);
 
         this.state = {
-            page: false,
+            page: 1,
             category: props.match.params.category,
             error: false,
             categoryInfo: false,
             categoryList: false,
             currentComponent: Loading,
-            postsList: undefined,
-            loadTrue: true,
+            postsList: [],
+            loadMore: false,
             listComponents : {
                 PortfolioList: PortfolioList,
                 BlogList: BlogList
@@ -30,6 +30,23 @@ class PostsCategory extends React.Component {
         this.categoryChange = this.categoryChange.bind(this);
     }
 
+    loadMorePosts(){
+        this.props.getPostList(this.props.config.lang,  this.state.category, this.state.page).then( response => {
+            let pageListInfo = this.props.store.posts[this.state.category];
+            let loadMore = false;
+            let postsList = this.state.postsList.concat(pageListInfo.postslist);
+            if(this.state.page < pageListInfo.totalpages){
+                loadMore = true;
+            }
+
+            this.setState({
+                pageListInfo,
+                postsList,
+                loadMore,
+                page :this.state.page + 1
+            });
+        });
+    }
     categoryChange(slug){
         this.setState({
             category: slug
@@ -77,9 +94,18 @@ class PostsCategory extends React.Component {
     }
 
     getPostList(){
-        this.props.getPostList(this.props.config.lang,  this.state.category).then( response => {
+        this.props.getPostList(this.props.config.lang,  this.state.category, 1).then( response => {
+            let pageListInfo = this.props.store.posts[this.state.category];
+            let loadMore = false;
+            let postsList = pageListInfo.postslist;
+            if(1 < pageListInfo.totalpages){
+                loadMore = true;
+            }
             this.setState({
-                postsList: this.props.store.posts[this.state.category] 
+                pageListInfo,
+                postsList,
+                loadMore,
+                page : 2
             });
         });
     }
@@ -89,10 +115,10 @@ class PostsCategory extends React.Component {
             this.getCategories();
         }
 
-        if(!this.state.postsList) {
+        if(this.state.postsList.length == 0) {
            this.getPostList();
         }
-
+        window.scrollTo(0,0);
     }
 
     componentDidUpdate(prevProps, prevState){
@@ -122,8 +148,8 @@ class PostsCategory extends React.Component {
             <div className={"projectwrapper"}>
                 <PagesHeader categoryList={this.state.categoryList} category={this.state.category} categoryChange={this.categoryChange} />
                 <ComponentName pageInfo={this.state.categoryInfo} postsList={this.state.postsList}/>
-                {(this.state.loadTrue) ?
-                <div className={"sitebutton"}>{this.props.languageData['Load More']}</div>
+                {(this.state.loadMore) ?
+                <div onClick={()=> this.loadMorePosts()} className={"sitebutton"}>{this.props.languageData['Load More']}</div>
                 :""}
             </div>
         )
@@ -144,7 +170,7 @@ const mapStateToProps = (store, ownProps) => {
 const mapDispatchToProps = dispatch => ({
 	getCategory: (lang, slug) => dispatch(getCategory(lang, slug)),
 	getPost: (lang, slug) => dispatch(getPost(lang, slug)),
-	getPostList: (lang, slug) => dispatch(getPostList(lang, slug)),
+	getPostList: (lang, slug, page) => dispatch(getPostList(lang, slug, page)),
 });
 
 const PostsCategoryContainer = connect(mapStateToProps, mapDispatchToProps)(PostsCategory);

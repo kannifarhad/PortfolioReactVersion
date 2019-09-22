@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 class SochialShare extends React.Component {
     constructor(props) {
@@ -18,8 +19,8 @@ class SochialShare extends React.Component {
         window.open(`${link}'${this.state.shareLink}'` , 'newWin','width=600,height=600');
     }
 
-    componentDidUpdate(prevProps) {
-        if(prevProps.match.params.post !== this.props.match.params.post) {
+    componentDidUpdate(prevProps, prevState) {
+        if(prevState.shareLink !== window.location.href) {
             this.setState({
                 shareLink: window.location.href
             })
@@ -29,7 +30,7 @@ class SochialShare extends React.Component {
     render(){
         return(
             <div className="sochialshare">        
-                <div className="sochialleft"><h2>Share in Social Networks</h2></div>
+                <div className="sochialleft"><h2>{this.props.languageData['Share in Social Networks']}</h2></div>
                 <div className="sochialright">
                     <ul className="sochiallinks">
                         <li><a className="facebook" onClick={(e) => this.sochialShare('https://www.facebook.com/sharer/sharer.php?u=', e)} alt="Share On Facebook" ><span className="icons icon-facebook"></span> </a></li>
@@ -46,4 +47,13 @@ class SochialShare extends React.Component {
    
 }
 
-export default SochialShare;
+const mapStateToProps = (store) => {
+    return {
+		config : store.common.config,
+        languageData: store.common.translations,
+        store
+    }
+};
+
+
+export default connect(mapStateToProps, null)(SochialShare);

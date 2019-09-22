@@ -1,10 +1,10 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import { connect } from 'react-redux';
+import { CSSTransitionGroup } from 'react-transition-group' 
 
 
 function PortfolioItemsList(props){
-    //console.log('PortfolioItemsList',props);
         function checkColorValue(elem, tag){
             try {
                 if(elem.hasOwnProperty(tag)){
@@ -15,11 +15,13 @@ function PortfolioItemsList(props){
             }
         }
         return(
-            <React.Fragment>
-                {
-                    (typeof props.items != 'undefined') ?
-                    props.items.postslist.map(item => 
-                    <div key={item.id} className={`items ${item.categorylist.join(' ')}`}>
+            <CSSTransitionGroup 
+                transitionName="zoomAni"
+                transitionEnterTimeout={1000}
+                transitionLeaveTimeout={1000}
+            >
+                {props.items.map(item => 
+                    <div key={item.id} className={`animated items ${item.categorylist.join(' ')}`}>
                         <div className="itemover" style={{backgroundColor: checkColorValue(item.extras, 'color')}}>
                             <div className="texts">
                                 <h2>{item.title}</h2>
@@ -32,9 +34,8 @@ function PortfolioItemsList(props){
                         </div>
                         <img src={item.thumb_image} />
                     </div>
-                )
-                : "Loading"}
-            </React.Fragment>
+                )}
+            </CSSTransitionGroup>
         );
 }
 

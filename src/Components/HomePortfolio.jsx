@@ -3,13 +3,14 @@ import PortfolioItemsList from './Elements/PortfolioItemsList';
 import PortfolioHomeHead from './Elements/PortfolioHomeHead';
 import {getCategory, getCategoryList, getPost, getPostList} from '../Redux/actions';
 import { connect } from 'react-redux';
+import {NavLink} from 'react-router-dom';
 
 class HomePortfolio extends React.Component{   
     constructor(props){
 		super(props);
 		this.state = {
 			portfolioInfo : false,
-            works: undefined,
+            works: [],
             category: 'portfolio',
             categoryList: false,
             hasError:false
@@ -21,51 +22,62 @@ class HomePortfolio extends React.Component{
             category: slug
         });
     }
+
+    getCategories(){
+        this.props.getCategory(this.props.config.lang , 'portfolio').then( response => {
+            this.setState({
+                portfolioInfo: this.props.store.categories['portfolio'] 
+            });
+        });
+    }
+
+    getPostList(){
+        this.props.getPostList(this.props.config.lang,  this.state.category).then( response => {
+            let postsList = this.props.store.posts[this.state.category]
+            this.setState({
+                works: postsList.postslist
+            });
+        });
+    }
+
     componentWillMount(){
 		if(!this.state.portfolioInfo) {
-			this.props.getCategory(this.props.config.lang , 'portfolio').then( response => {
-				this.setState({
-					portfolioInfo: this.props.store.categories['portfolio'] 
-				});
-			});
+			this.getCategories();
 		}
 
-		if(!this.state.works) {
-			this.props.getPostList(this.props.config.lang,  this.state.category).then( response => {
-				this.setState({
-					works: this.props.store.posts[this.state.category] 
-				});
-			});
+		if(this.state.works.length == 0) {
+			this.getPostList();
 		}
     }
+
     componentDidUpdate(prevProps, prevState){
         if(prevState.category != this.state.category || prevProps.config.lang != this.props.config.lang ) {
-            this.props.getPostList(this.props.config.lang,  this.state.category).then( response => {
-				this.setState({
-					works: this.props.store.posts[this.state.category] 
-				});
-            });
-            
-            this.props.getCategory(this.props.config.lang , 'portfolio').then( response => {
-				this.setState({
-					portfolioInfo: this.props.store.categories['portfolio'] 
-				});
-			});
+            this.getPostList();
+            this.getCategories();
         }
     }
+
     componentDidCatch(error, info) {
         this.setState({ hasError: true });
     }
+    
     render() {
         return (
-            <div id="portfolio">
-                {(!this.state.hasError)?
-                <div className="portfoliocont">
-                    <PortfolioHomeHead category={this.state.category} categoryChange={this.categoryChange} portfolioInfo={this.state.portfolioInfo} />
-                    <PortfolioItemsList items={this.state.works} />
+            <React.Fragment>
+                <div id="portfolio">
+                    {(!this.state.hasError)?
+                    <div className="portfoliocont">
+                        <PortfolioHomeHead category={this.state.category} categoryChange={this.categoryChange} portfolioInfo={this.state.portfolioInfo} />
+                        <PortfolioItemsList items={this.state.works} />
+                    
+                    </div>
+                    : ""}
                 </div>
-                : ""}
-            </div>
+                <div className="viewmorecontainer">
+                    <NavLink to={`/${this.props.config.lang}/${this.state.category}`} className={"sitebutton"}>{this.props.languageData['View More']}</NavLink>
+                </div>
+             </React.Fragment>
+
         )
     }
     
