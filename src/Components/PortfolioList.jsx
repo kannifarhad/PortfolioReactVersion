@@ -1,13 +1,9 @@
 import React from 'react';
-import {NavLink} from 'react-router-dom';
 import {Helmet} from "react-helmet";
 import { connect } from 'react-redux';
-
 import PortfolioItemsList from './Elements/PortfolioItemsList';
-import PortfolioHomeHead from './Elements/PortfolioHomeHead';
 
 function  PortfolioList (props){
-    //console.log('PortfolioList postsList olmalidi',props);
     return(
         <div>
             <Helmet>

@@ -6,10 +6,17 @@ import HomeAbout from '../Components/HomeAbout';
 import HomeMyServices from '../Components/HomeMyServices';
 import HomePortfolio from '../Components/HomePortfolio';
 import WorkedWith from '../Components/WorkedWith';
+import {Helmet} from "react-helmet";
 
 function HomePage (props) {
         return(
             <div className="wrapper">
+                <Helmet>
+                    <meta charSet="utf-8" />
+                    <title>{props.config.author + ' | '}</title>
+                    <meta name="description" content={props.config.author} />
+                </Helmet>
+
                 <HomeHeader />
                 <HomeAbout />
                 <HomeMyServices />
@@ -22,7 +29,8 @@ function HomePage (props) {
 
 const mapStateToProps = (store, ownProps) => {
     return {
-        store,
+        config : store.common.config,
+        languageData: store.common.translations,
         ...ownProps
     }
 };

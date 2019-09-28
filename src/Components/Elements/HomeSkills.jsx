@@ -13,6 +13,7 @@ function HomeSkills (props) {
 					<li><b>{props.languageData['E-mail']} :</b> <span> {props.config.email}</span></li>
 					<li><b>{props.languageData['LinkedIn']} :</b> <a href={props.config.linkedin} target="_blank"> Farhad Aliyev</a></li>
 					<li><b>{props.languageData['Facebook']} :</b> <a href={props.config.facebook}  target="_blank">{props.languageData['View Page']}</a></li>
+					<li><b>{props.languageData['Github']} :</b> <a href={props.config.github}  target="_blank">{props.languageData['Github Profile']}</a></li>
 				</ul>
 				<a className="button" href={props.config.resume}>{props.languageData['DOWNLOAD RESUME']}</a>
 			</div>

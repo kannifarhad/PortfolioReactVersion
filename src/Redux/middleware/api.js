@@ -28,10 +28,13 @@ const apiMiddleware = apiUrl => store => next => action => {
             type: SUCCESS,
             data
         }))
-        .catch(error => next({
-            type: FAILURE,
-            error: error.message
-        }));
+    .catch(error => {
+        next({
+        type: FAILURE,
+        error: error.message
+        });
+        throw error; 
+    });
 };
 
 export default apiMiddleware;

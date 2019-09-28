@@ -178,10 +178,16 @@ select {
 	color: #0d1f33;
 }
 .skillsblock {
-	width:31%;
+	width:30%;
 	display:inline-block;
 	vertical-align:top;
 	margin:0px 1%;
+}
+.skillsblock:first-child {
+	width:25%;
+}
+.skillsblock:last-child {
+	width:39%;
 }
 .skillsblock:first-child h1 {
 	text-align:left;
@@ -269,10 +275,10 @@ select {
 	transition: all 0.2s ease-in-out;
 }
 .skilllist>li> img {
-	width:68px;
-	display:block;
+	width: 60px;
+    display: block;
+    margin: 5px auto !important;
 	opacity:0.5;
-	margin:2px;
 	-webkit-transition: all 0.2s ease-in-out;
 	-moz-transition: all 0.2s ease-in-out;
 	-ms-transition: all 0.2s ease-in-out;
@@ -1006,23 +1012,79 @@ transition: all 0.3s ease-in-out;
 	-o-transition: all 0.3s ease-in-out;
 	transition: all 0.3s ease-in-out;
 }
-.preloading {
-	width:100%;
+html, body {
 	height: 100%;
-	padding: 300px 0px;
-	background: #0d1f33;
+}
+#root {
+	height: 100%;
+}
+.preloading {
+	width: 100%;
+    height: 100%;
+    /* padding: 300px 0px; */
+    background: #0d1f33;
+    display: table;
 }
 .preloading img {
 	position: absolute;
 	top: 10px;
     left: 10px;
 }
+.reload {
+	width: 120px;
+    height: 120px;
+    position: relative;
+    margin: 0px auto;
+    border-radius: 146px;
+    background: #FFA600;
+    padding: 20px;
+	box-shadow: 0px 10px 0px #8f6001;
+	cursor: pointer;
+	-webkit-transition: all 0.3s ease-in-out;
+	-moz-transition: all 0.3s ease-in-out;
+	-ms-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
+}
+.reload:hover{
+	box-shadow: 0px 0px 0px 5px #8f6001;
+	-webkit-transition: all 0.3s ease-in-out;
+	-moz-transition: all 0.3s ease-in-out;
+	-ms-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
+}
+.reload img {
+	width: 100px;
+    height: 100px;
+    display: block;
+    margin: 20px;
+}
+.preloading .error {
+	text-align: center;
+}
+.preloading .error h1 {
+	color: #FFA600;
+    font-family: 'Bebas Neue';
+    font-size: 44px;
+    padding: 40px 0px 9px 0px;
+    text-align: center;
+}
+.preloading .error p {
+	color:#fff;
+	font-size: 16px;
+}
 .lds-dual-ring {
 	width: 200px;
 	height: 200px;
 	position: relative;
 	margin:0px auto;
-  }
+}
+.center {
+	display: table-cell;
+    height: 100%;
+    vertical-align: middle;
+}
   .lds-dual-ring:after {
 	content: " ";
 	display: block;
@@ -2224,7 +2286,7 @@ ul.sochiallinks li a:hover {
 		margin: 30px;
 	}
 	.skillsblock {
-		width:100%;
+		width:100% !important;
 		margin:20px auto;
 	}
 	.skillsblock a.button {

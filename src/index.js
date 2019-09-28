@@ -1,31 +1,42 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
+import Reload from './Components/Elements/Reload';
+import Preload from './Components/Elements/Preload';
 import { Provider } from 'react-redux';
 import store from './Redux/store';
 import {getConfigs, getLangList, getMenus, getTranslations} from './Redux/actions';
 
-ReactDOM.render(
-                <div className="preloading">
-                    <div className="lds-dual-ring"><img src="/assets/img/logo_yellow.svg" /></div>
-                </div>, document.getElementById("root"));
 
+function reload() {
+    ReactDOM.render(<Preload />, document.getElementById("root"));
 
-store.dispatch(getConfigs()).then(response=> {
-     Promise.all([
-        store.dispatch(getTranslations(response.data.lang)),
-        store.dispatch(getMenus(response.data.lang)),
-        store.dispatch(getLangList())
-    ]).then(response => {
-        ReactDOM.render(
-            <Provider store={store} >
-                <App  /> 
-            </Provider>
-            , document.getElementById("root"));
+    store.dispatch(getConfigs()).then(response=> {
+        Promise.all([
+            store.dispatch(getTranslations(response.data.lang)).catch(error => { throw error;}),
+            store.dispatch(getMenus(response.data.lang)).catch(error => { throw error; }),
+            store.dispatch(getLangList()).catch(error => { throw error; })
+        ]).then(response => {
+            ReactDOM.render(
+                <Provider store={store} >
+                    <App  /> 
+                </Provider>
+                , document.getElementById("root"));
+        }).catch(error => {
+            errorController(error);
+        });
+    }).catch(error => {
+        errorController(error);
     });
-});
 
+}
 
+function errorController(error){
+    console.log(error.message);
+    ReactDOM.render(<Reload reloadCall={reload} />,document.getElementById("root"));
+}
+
+reload();
 //ReactDOM.render( <App store={store} /> , document.getElementById("root"));
 // import $ from 'jquery';
 // import styles from './Assets/css/style.css';

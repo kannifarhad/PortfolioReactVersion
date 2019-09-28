@@ -54,7 +54,6 @@ class WorkedWith extends React.Component {
         this.setState({ hasError: true });
     }
     render() {
-        console.log(this.state);
         return(
             <div id="workedwith">
                 <div className="workedhead">

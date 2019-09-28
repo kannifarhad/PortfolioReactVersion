@@ -85,7 +85,7 @@ class Contact extends React.Component {
                     </div>
                 </div>
                         
-                <div class="copyright">
+                <div className="copyright">
                     <p>Powered by Darth Vader. All Rights Reserved © 2018</p>
                 </div>
             </React.Fragment>

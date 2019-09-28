@@ -93,16 +93,16 @@ class HomeMyServices extends React.Component {
     
                 <div id="lamps">
                     <div className="lampscont">
-                        <div className="lamp lamp4" onMouseEnter={this.lampOver} onMouseLeave={this.lampOut} style={{left:"30px",top:"-90px"}}><img src="/assets/img/lamp/4on.png" /> </div>
-                        <div className="lamp lamp5" onMouseEnter={this.lampOver} onMouseLeave={this.lampOut} style={{left:"130px",top:"-290px"}}><img src="/assets/img/lamp/5on.png"/> </div>
-                        <div className="lamp lamp1" onMouseEnter={this.lampOver} onMouseLeave={this.lampOut} style={{left:"200px",top:"-50px"}}><img src="/assets/img/lamp/1on.png"/> </div>
-                        <div className="lamp lamp3" onMouseEnter={this.lampOver} onMouseLeave={this.lampOut} style={{top:"-180px",left:"433px"}}><img src="/assets/img/lamp/3on.png"/> </div>
-                        <div className="lamp lamp5" onMouseEnter={this.lampOver} onMouseLeave={this.lampOut} style={{left:"585px",top:"-100px"}}><img src="/assets/img/lamp/5on.png"/> </div>
-                        <div className="lamp lamp4" onMouseEnter={this.lampOver} onMouseLeave={this.lampOut} style={{left:"710px",top:"-245px"}}><img src="/assets/img/lamp/4on.png"/> </div>
-                        <div className="lamp lamp2" onMouseEnter={this.lampOver} onMouseLeave={this.lampOut} style={{left:"843px",top: "-173px"}}><img src="/assets/img/lamp/2on.png"/> </div>
-                        <div className="lamp lamp5" onMouseEnter={this.lampOver} onMouseLeave={this.lampOut} style={{left:"1025px",top:"-230px"}}><img src="/assets/img/lamp/5on.png"/> </div>
-                        <div className="lamp lamp4" onMouseEnter={this.lampOver} onMouseLeave={this.lampOut} style={{left:"1110px",top:"-10px"}}><img src="/assets/img/lamp/4on.png"/> </div>
-                        <div className="lamp lamp3" onMouseEnter={this.lampOver} onMouseLeave={this.lampOut} style={{left:"1200px",top:"-240px"}}><img src="/assets/img/lamp/3on.png"/> </div>
+                        <div className="lamp lamp4" onMouseEnter={this.lampOver} onMouseLeave={this.lampOut} style={{left:"30px",top:"-90px"}}><img src="http://kanni.pro/site/assets/img/lamp/4on.png" /> </div>
+                        <div className="lamp lamp5" onMouseEnter={this.lampOver} onMouseLeave={this.lampOut} style={{left:"130px",top:"-290px"}}><img src="http://kanni.pro/site/assets/img/lamp/5on.png"/> </div>
+                        <div className="lamp lamp1" onMouseEnter={this.lampOver} onMouseLeave={this.lampOut} style={{left:"200px",top:"-50px"}}><img src="http://kanni.pro/site/assets/img/lamp/1on.png"/> </div>
+                        <div className="lamp lamp3" onMouseEnter={this.lampOver} onMouseLeave={this.lampOut} style={{top:"-180px",left:"433px"}}><img src="http://kanni.pro/site/assets/img/lamp/3on.png"/> </div>
+                        <div className="lamp lamp5" onMouseEnter={this.lampOver} onMouseLeave={this.lampOut} style={{left:"585px",top:"-100px"}}><img src="http://kanni.pro/site/assets/img/lamp/5on.png"/> </div>
+                        <div className="lamp lamp4" onMouseEnter={this.lampOver} onMouseLeave={this.lampOut} style={{left:"710px",top:"-245px"}}><img src="http://kanni.pro/site/assets/img/lamp/4on.png"/> </div>
+                        <div className="lamp lamp2" onMouseEnter={this.lampOver} onMouseLeave={this.lampOut} style={{left:"843px",top: "-173px"}}><img src="http://kanni.pro/site/assets/img/lamp/2on.png"/> </div>
+                        <div className="lamp lamp5" onMouseEnter={this.lampOver} onMouseLeave={this.lampOut} style={{left:"1025px",top:"-230px"}}><img src="http://kanni.pro/site/assets/img/lamp/5on.png"/> </div>
+                        <div className="lamp lamp4" onMouseEnter={this.lampOver} onMouseLeave={this.lampOut} style={{left:"1110px",top:"-10px"}}><img src="http://kanni.pro/site/assets/img/lamp/4on.png"/> </div>
+                        <div className="lamp lamp3" onMouseEnter={this.lampOver} onMouseLeave={this.lampOut} style={{left:"1200px",top:"-240px"}}><img src="http://kanni.pro/site/assets/img/lamp/3on.png"/> </div>
     
                         <div className="sitat" onMouseEnter={this.sitatOver} onMouseLeave={this.sitatOut}>
                             <p>{this.props.languageData['There are painters who transform the sun to a yellow spot, but there are others who with the help of their art and their intelligence, transform a yellow spot into sun']}</p>
