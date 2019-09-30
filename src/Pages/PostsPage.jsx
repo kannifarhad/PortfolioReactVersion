@@ -104,6 +104,7 @@ class PostsPage extends React.Component {
         if(!this.state.postFull) {
             this.getPostFull();
         }
+        window.scrollTo(0,0);
     }
 
     componentDidUpdate(prevProps, prevState){
@@ -139,6 +140,7 @@ class PostsPage extends React.Component {
                 }
             }
         }
+        window.scrollTo(0,0);
     }
 
     render(){

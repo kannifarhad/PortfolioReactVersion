@@ -5,34 +5,49 @@ import UlList from './Elements/UlLlist';
 import HeaderAnimation from './Elements/HeaderAnimation';
 import {langChange} from '../Redux/actions';
 
-function HomeHeader (props){
+class HomeHeader extends React.Component{
+    constructor(props){
+		super(props);
+		this.state = {
+			phoneMenu : false
+        }
+        this.openMenu = this.openMenu.bind(this);
+    }
+
+    openMenu(){
+        console.log('Phone Menu');
+        this.setState({phoneMenu: !this.state.phoneMenu});
+    }
+    render() {
         return(
             <div>
-            {(typeof props.menusList!= 'undefined')?
+            {(typeof this.props.menusList!= 'undefined')?
                 <div>
                     <div id="menu">
                         <UlList 
-                            menu={props.menusList.mainmenu.menujson} 
+                            menu={this.props.menusList.mainmenu.menujson} 
                             listClass='menu' 
                             icons={false} 
-                            LangClicked = {props.langChange} 
-                            config = {props.config}
-                            langList= {props.langList}
-                            languageData={props.translations}
+                            LangClicked = {this.props.langChange} 
+                            config = {this.props.config}
+                            langList= {this.props.langList}
+                            languageData={this.props.translations}
                             />
                     </div>
                     
                     <div id="phonemenu">
-                        <div className="menyunuach">Open Menu</div>
+                        <div className="menyunuach" onClick={this.openMenu}>{(this.state.phoneMenu)? this.props.translations['Close Menu'] : this.props.translations['Open Menu']}</div>
+                        {(this.state.phoneMenu) ?
                         <UlList 
-                            menu={props.menusList.mainmenu.menujson} 
+                            menu={this.props.menusList.mainmenu.menujson} 
                             listClass='phonemenu' 
                             icons={false} 
-                            LangClicked = {props.langChange} 
-                            config = {props.config}
-                            langList= {props.langList}
-                            languageData={props.translations}
+                            LangClicked = {this.props.langChange} 
+                            config = {this.props.config}
+                            langList= {this.props.langList}
+                            languageData={this.props.translations}
                             />	
+                            : ''}
                     </div>
                 </div>
             : <div>Loading</div>}
@@ -41,6 +56,7 @@ function HomeHeader (props){
             )
     }
 
+}
 
 const mapStateToProps = store => {
     return {

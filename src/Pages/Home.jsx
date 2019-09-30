@@ -5,6 +5,7 @@ import HomeHeader from '../Components/HomeHeader';
 import HomeAbout from '../Components/HomeAbout';
 import HomeMyServices from '../Components/HomeMyServices';
 import HomePortfolio from '../Components/HomePortfolio';
+import HomeBlog from '../Components/HomeBlog';
 import WorkedWith from '../Components/WorkedWith';
 import {Helmet} from "react-helmet";
 
@@ -16,11 +17,11 @@ function HomePage (props) {
                     <title>{props.config.author + ' | '}</title>
                     <meta name="description" content={props.config.author} />
                 </Helmet>
-
                 <HomeHeader />
                 <HomeAbout />
                 <HomeMyServices />
                 <HomePortfolio />
+                <HomeBlog />
                 <WorkedWith /> 
             </div>
         )
