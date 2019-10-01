@@ -1233,13 +1233,14 @@ html, body {
 	display:block;
 }
 #menu .menu  li.current a , #menu .menu  ul.submenu li a:hover{
-	background:url(../img/whitetr.png);
-	color:#ffa600;
+	background:#ffa600;
 		-webkit-transition: all 0.4s ease-in-out;
   -moz-transition: all 0.4sease-in-out;
   -ms-transition: all 0.4s ease-in-out;
   -o-transition: all 0.4s ease-in-out;
   transition: all 0.4s ease-in-out;
+  color:#0d1f33;
+  cursor: pointer;
 }
 #menu .menu  li:hover .submenu {
 	display:block;
@@ -1249,7 +1250,7 @@ html, body {
 	position:absolute;
 	top:55px;
 	left:0px;
-	background:url(../img/blacktr.png);
+	background:#001e4c;
 	display:none;
 		-webkit-transition: all 0.4s ease-in-out;
   -moz-transition: all 0.4sease-in-out;
@@ -1258,7 +1259,7 @@ html, body {
   transition: all 0.4s ease-in-out;
 }
 #menu .menu .submenu li a {
-    padding: 7px 15px;
+    padding: 10px 30px;
     text-align: left;
     text-transform: initial;
 		-webkit-transition: all 0.4s ease-in-out;
@@ -1456,7 +1457,7 @@ left: -8px;
 	max-width:1200px;
 }
 .projectfull {
-	padding:20px 0px;
+	padding:50px 0px;
 	width:100%;
 	max-width:1100px;
 	margin:0px auto;

@@ -4,10 +4,9 @@ import {NavLink} from 'react-router-dom';
 import {getCategory, getCategoryList, getPost, getPostList} from '../Redux/actions';
 
 import PortfolioPage  from '../Components/PortfolioPage';
-// import Blogpage  from '../Components/Blogpage';
+import BlogFull  from '../Components/BlogFull';
 import Error from './Error';
 import Loading from './Loading';
-import PagesHeader from '../Components/PagesHeader';
 
 class PostsPage extends React.Component {
     constructor(props) {
@@ -24,7 +23,7 @@ class PostsPage extends React.Component {
             postFull: false,
             pageComponents : {
                 PortfolioPage: PortfolioPage,
-                // BlogList: BlogList
+                BlogFull: BlogFull
             }
         }
         this.categoryChange = this.categoryChange.bind(this);
@@ -147,8 +146,13 @@ class PostsPage extends React.Component {
         let ComponentName = this.state.currentComponent;
         return (
             <div>
-                <PagesHeader categoryList={this.state.categoryList} category={this.state.category} categoryChange={this.categoryChange} />
-                <ComponentName postFull={this.state.postFull} pageInfo={this.state.categoryInfo} />
+                <ComponentName 
+                    categoryList={this.state.categoryList} 
+                    category={this.state.category} 
+                    categoryChange={this.categoryChange} 
+                    postFull={this.state.postFull} 
+                    pageInfo={this.state.categoryInfo} 
+                />
             </div>
         )
     }

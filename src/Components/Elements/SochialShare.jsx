@@ -16,7 +16,7 @@ class SochialShare extends React.Component {
     }
     sochialShare(link, event){
         event.preventDefault();
-        window.open(`${link}'${this.state.shareLink}'` , 'newWin','width=600,height=600');
+        window.open(`${link}${this.state.shareLink}` , 'newWin','width=600,height=600');
     }
 
     componentDidUpdate(prevProps, prevState) {

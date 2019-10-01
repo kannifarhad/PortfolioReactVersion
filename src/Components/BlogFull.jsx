@@ -4,7 +4,7 @@ import {Helmet} from "react-helmet";
 import SochialShare from './Elements/SochialShare';
 import PagesHeader from './PagesHeader';
 
-function PortfolioPage (props) {
+function BlogFull(props) {
         function returnFullstory(){
             return { __html : props.postFull.fullstory }
         }
@@ -38,4 +38,4 @@ function PortfolioPage (props) {
     
 }
 
-export default PortfolioPage;
+export default BlogFull;

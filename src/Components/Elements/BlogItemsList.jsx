@@ -10,6 +10,11 @@ function BlogItemsList(props){
             alignValue = !alignValue;
             return (alignValue) ? 'leftalign' : 'rightalign';
         }
+        function convertDate(dateString){
+            let parsedDate = new Date(dateString);
+            var monthArray=['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+            return `${parsedDate.getDate()}-${props.languageData[monthArray[parsedDate.getMonth()]] }-${parsedDate.getFullYear()}`;
+        }
         return(
             <div className="blogitemscont">
                 <CSSTransitionGroup 
@@ -21,9 +26,7 @@ function BlogItemsList(props){
                 <div key={item.id} className={`blogitem animated ${checAlign()}`}>
 
                     <div className="imageblock">
-                        <div className="blogcategory">
-                            <span className="icons icon-webdesign"></span>
-                        </div>
+                        <div className="blogcategory"><span className="icons icon-webdesign"></span></div>
                         <Link to={`/${props.config.lang}/portfolio${(props.categorySlug) ? `/${props.categorySlug}` : ''}/view/${item.slug}`} className="imageitem"> <img src={item.thumb_image} /></Link>
                     </div>
 
@@ -31,8 +34,8 @@ function BlogItemsList(props){
                         <h1><Link to={`/${props.config.lang}/blog${(props.categorySlug) ? `/${props.categorySlug}` : ''}/view/${item.slug}`}>{item.title}</Link></h1>
                         <p className="catlist">
                             <a href="URLlang/posts/categories[cats].type/cats" target="_blank">categories[cats].title</a>
-                            </p>
-                        <span>posts.date|date("d-M-Y")</span>
+                        </p>
+                        <span>{convertDate(item.date)}</span>
                         <div className="clear"></div>
                         <p>{item.shortstory}</p>
                     </div>

@@ -1,47 +1,47 @@
 import React from 'react';
+import {Helmet} from "react-helmet";
+import { connect } from 'react-redux';
+import BlogItemsList from './Elements/BlogItemsList';
+import PagesHeader from './PagesHeader';
 
-class BlogList extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            typeSlug: this.props.match.params.type,
-            categorySlug: this.props.match.params.category,
-            postsList: null,
-            pageInfo: this.props.pageInfo
-        }
-    }
-
-    render(){
-        return(
-            // <div></div>
-            // <div className="categories">
-            //         <NavLink exact to={`/${this.props.lang}/${this.state.typeSlug}`}>All</NavLink>
-            //         {this.props.pageInfo.categories.map(item => 
-            //             <NavLink exact key={item.id} to={`/${this.props.lang}/${this.state.typeSlug}/${item.slug}`} data-filter={item.slug}>{item.title}</NavLink>
-            //             )}
-            // </div>
+function  BlogList (props){
+    return(
+        <React.Fragment>
+            <PagesHeader categoryList={props.categoryList} category={props.category} categoryChange={props.categoryChange} />
+            <Helmet>
+                <meta charSet="utf-8" />
+                <title>{props.pageInfo.title + ' | ' + props.config.author} </title>
+                <meta name="description" content={props.pageInfo.description} />
+            </Helmet>
+            <div className="projectwrapper">
+                <div className="projectcircles"></div>
+                <div className="projecttitle"><h1>{props.pageInfo.title}</h1></div>
+                <div className="projectstory"><p>{props.pageInfo.description}</p></div>
+            </div>
 
             <div className="blogitemscont">
-                    <div className="blogitem leftalign">
-                            <div className="imageblock">
-                                <div className="blogcategory">
-                                    <span className="icons icon-webdesign"></span>
-                                </div>
-                                <a href="{{URL}}{{lang}}/posts/{{currenttype}}/{{poscategory}}/view/{{post.slug}}" className="imageitem"> <img src="{{post.thumb_image}}" /></a>
-                            </div>
-
-                            <div className="shortstory">
-                                <h1><a href="{{URL}}{{lang}}/posts/{{currenttype}}/{{poscategory}}/view/{{post.slug}}">Title asdas</a></h1>
-                                <span>21MAY 2018</span><div className="clear"></div>
-                                <p>Lorem ipsum dolor text</p>
-                            </div>
-
-                            <div className="clear"></div>
-                    </div>
-
+                <BlogItemsList items={props.postsList} />
             </div>
-        )
-    }
+            <div className="clear"></div>
+            
+            {(props.postsList.length == 0) ?
+                    <div className="blockTitle">
+                        <h2>{props.languageData['There is no items here yet :(']}</h2>
+                        <p>{props.languageData['Please come back later']}</p>
+                    </div> : "" }
+
+
+            
+        </React.Fragment>
+    )
 }
 
-export default BlogList;
+const mapStateToProps = (store, ownProps) => {
+    return {
+        config : store.common.config,
+        languageData: store.common.translations,
+        ...ownProps
+    }
+};
+
+export default connect(mapStateToProps, null)(BlogList);

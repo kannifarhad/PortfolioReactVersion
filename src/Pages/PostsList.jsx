@@ -5,7 +5,6 @@ import {getCategory, getCategoryList, getPost, getPostList} from '../Redux/actio
 import PortfolioList  from '../Components/PortfolioList';
 import BlogList  from '../Components/BlogList';
 import Error from './Error';
-import PagesHeader from '../Components/PagesHeader';
 import Loading from './Loading';
 
 
@@ -147,14 +146,14 @@ class PostsCategory extends React.Component {
         let ComponentName = this.state.currentComponent;
         return (
             <div className={"projectwrapper"}>
-                <PagesHeader categoryList={this.state.categoryList} category={this.state.category} categoryChange={this.categoryChange} />
-                <ComponentName pageInfo={this.state.categoryInfo} postsList={this.state.postsList}/>
-                {(this.state.postsList.length == 0) ?
-                    <div className="blockTitle">
-                        <h2>{this.props.languageData['There is no items here yet :(']}</h2>
-                        <p>{this.props.languageData['Please come back later']}</p>
-                    </div> : "" }
-
+                <ComponentName 
+                    pageInfo={this.state.categoryInfo} 
+                    postsList={this.state.postsList} 
+                    categoryList={this.state.categoryList} 
+                    category={this.state.category} 
+                    categoryChange={this.categoryChange} 
+                />
+                
                 {(this.state.loadMore) ?
                     <div onClick={()=> this.loadMorePosts()} className={"sitebutton"}>{this.props.languageData['Load More']}</div> : "" }
             </div>
