@@ -37,6 +37,3 @@ function errorController(error){
 }
 
 reload();
-//ReactDOM.render( <App store={store} /> , document.getElementById("root"));
-// import $ from 'jquery';
-// import styles from './Assets/css/style.css';

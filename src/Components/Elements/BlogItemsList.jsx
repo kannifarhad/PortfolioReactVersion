@@ -33,7 +33,7 @@ function BlogItemsList(props){
                     <div className="shortstory">
                         <h1><Link to={`/${props.config.lang}/blog${(props.categorySlug) ? `/${props.categorySlug}` : ''}/view/${item.slug}`}>{item.title}</Link></h1>
                         <p className="catlist">
-                            <a href="URLlang/posts/categories[cats].type/cats" target="_blank">categories[cats].title</a>
+                            {item.categorylist.map(cat => { return <Link key={cat.id} to={`/${props.config.lang}/${cat.slug}`}>{cat.title}</Link>   })}
                         </p>
                         <span>{convertDate(item.date)}</span>
                         <div className="clear"></div>

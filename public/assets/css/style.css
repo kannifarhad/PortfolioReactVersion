@@ -1,16 +1,5 @@
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outline:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
-@font-face {
-	font-family: 'Glyphter';
-	src: url('../fonts/Glyphter.eot');
-	src: url('../fonts/Glyphter.eot?#iefix') format('embedded-opentype'),
-	url('../fonts/Glyphter.woff') format('woff'),
-	url('../fonts/Glyphter.ttf') format('truetype'),
-	url('../fonts/Glyphter.svg#Glyphter') format('svg');
-	font-weight: normal;
-	font-style: normal;
-}
-
 body {
 	background:#fff;
 	/* background: #0d1f33; */
@@ -29,12 +18,7 @@ body {
 .nicescroll-rails {
 	z-index: 55555 !important;
 }
-.icons {
-	font-family: 'Glyphter';
-	line-height: 1;
-	-webkit-font-smoothing: antialiased;
-   -moz-osx-font-smoothing: grayscale;
-}
+
 input {
 	font-family: 'Circe Rounded';
 	font-weight: 300;
@@ -729,6 +713,7 @@ select {
 .itemover .texts a {
 	color:#fff;
 	font-weight: bold;
+	margin-right: 10px;
 }
 
 .itemover .texts a.readmore {
@@ -1189,7 +1174,7 @@ html, body {
 }
 .headermenu>ul.headmenu li .submenu {
 	position: absolute;
-	z-index: 2;
+	z-index: 10;
 	background: #0d1f33;
 	display: none;
 	top:100%;
@@ -1385,12 +1370,15 @@ html, body {
 
 .projectcircles {
 	position: absolute;
-	width: 825px;
-	top: -35px;
-	left: 50%;
-	height: 175px;
-	margin-left: -418px;
-	background: url(../img/projectcircles.svg) no-repeat center top;
+    /* width: 825px; */
+    width: 100%;
+    top: 0px;
+    /* left: 50%; */
+    height: 140px;
+    /* margin-left: -418px; */
+    background: url(../img/projectcircles.svg) no-repeat center bottom;
+    background-size: auto 175px;
+    overflow: hidden;
 }
 .projecttitle {
 	padding-top:190px;
@@ -1816,6 +1804,7 @@ ul.sochiallinks li a:hover {
 	font-size:16px;
 	display: block;
 	width:100%;
+	padding: 10px 0px;
 }
 .blogitem .shortstory span {
 	color: #ffa600;
@@ -2479,17 +2468,3 @@ ul.sochiallinks li a:hover {
 
 }
 
-
-.icon-coding:before{content:'\0041';}
-.icon-facebook:before{content:'\0042';}
-.icon-google:before{content:'\0043';}
-.icon-graphicd:before{content:'\0044';}
-.icon-home:before{content:'\0045';}
-.icon-linkedin:before{content:'\0046';}
-.icon-linkedinline:before{content:'\0047';}
-.icon-blog:before{content:'\0048';}
-.icon-portfolio:before{content:'\0049';}
-.icon-twitter:before{content:'\004a';}
-.icon-ui:before{content:'\004b';}
-.icon-vkontakte:before{content:'\004c';}
-.icon-webdesign:before{content:'\004d';}

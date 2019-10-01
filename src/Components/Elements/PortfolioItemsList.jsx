@@ -25,10 +25,7 @@ function PortfolioItemsList(props){
                         <div className="itemover" style={{backgroundColor: checkColorValue(item.extras, 'color')}}>
                             <div className="texts">
                                 <h2>{item.title}</h2>
-                                {/* <p>{props.categoriesList.map(categorie => 
-                                                { return props.categoriesList.map(cat => { return (cat.slug == categorie) ? <Link key={cat.id} to={`/${cat.slug}`} target="_blank">{cat.title} </Link> : false  })  
-                                                })}
-                                </p> */}
+                                <p>{item.categorylist.map(cat => { return <Link key={cat.id} to={`/${props.config.lang}/${cat.slug}`}>{cat.title}</Link>   })}</p>
                                 <Link className="readmore" to={`/${props.config.lang}/portfolio${(props.categorySlug) ? `/${props.categorySlug}` : ''}/view/${item.slug}`}>{props.languageData['View More']}</Link>
                             </div>
                         </div>

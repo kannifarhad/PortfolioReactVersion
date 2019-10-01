@@ -1,5 +1,5 @@
 import React from 'react';
-import {NavLink} from 'react-router-dom';
+import { connect } from 'react-redux';
 import {Helmet} from "react-helmet";
 import SochialShare from './Elements/SochialShare';
 import PagesHeader from './PagesHeader';
@@ -8,6 +8,8 @@ function PortfolioPage (props) {
         function returnFullstory(){
             return { __html : props.postFull.fullstory }
         }
+        let currentLang = props.langList.filter(lang => { return lang.slug == props.config.lang})[0];
+        
         return(
             <React.Fragment>
                 <PagesHeader categoryList={props.categoryList} category={props.category} categoryChange={props.categoryChange} />
@@ -16,8 +18,12 @@ function PortfolioPage (props) {
                 <React.Fragment>
                     <Helmet>
                         <meta charSet="utf-8" />
-                        <title>{props.postFull.title}</title>
+                        <title>{`${props.postFull.title} - ${props.pageInfo.title} | ${currentLang.sitetitle}`}</title>
                         <meta name="description" content={props.postFull.shortstory} />
+                        <meta name="og:title" content={props.postFull.title} />
+                        <meta name="og:description" content={props.postFull.shortstory} />
+                        <meta name="og:image" content={props.postFull.thumb_image} />
+                        <meta name="og:url" content={window.location.href} />
                     </Helmet>
                     <div className="projectwrapper">
                         <div className="projectcircles"></div>
@@ -37,5 +43,13 @@ function PortfolioPage (props) {
         )
     
 }
+const mapStateToProps = (store, ownProps) => {
+    return {
+        config : store.common.config,
+        langList: store.common.langList,
+        languageData: store.common.translations,
+        ...ownProps
+    }
+};
 
-export default PortfolioPage;
+export default connect(mapStateToProps, null)(PortfolioPage);

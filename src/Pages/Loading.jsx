@@ -1,19 +1,23 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-class Loading extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-    render(){
+function Loading (props){
         return(
             <div className="projectwrapper">
                 <div className="projectcircles"></div>
-                <div className="projecttitle"> <h1>Loading!</h1></div>
-                <div className="projectstory"> <p>Please wait till content loads</p> </div>
+                <div className="projecttitle"> <h1>{props.languageData['Loading!']}</h1></div>
+                <div className="projectstory"> <p>{props.languageData['Please wait till content loads']}</p> </div>
                 <div className="projectfull"></div>
             </div>
         )
-    }
 }
+const mapStateToProps = (store, ownProps) => {
+    return {
+        config : store.common.config,
+        langList: store.common.langList,
+        languageData: store.common.translations,
+        ...ownProps
+    }
+};
 
-export default Loading;
+export default connect(mapStateToProps, null)(Loading);

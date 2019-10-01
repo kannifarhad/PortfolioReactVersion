@@ -10,7 +10,23 @@ class WorkedWith extends React.Component {
 			workedWithInfo : false,
             partners: [],
             category: 'i-work-with',
-            hasError:false
+            hasError:false,
+            options: {
+                loop: true,
+                margin: 0,
+                nav:false,
+                responsive:{
+                    0: {
+                        items: 1,
+                    },
+                    600: {
+                        items: 3,
+                    },
+                    1000: {
+                        items: 3,
+                    },
+                },
+            }
         }
     }
 
@@ -66,7 +82,7 @@ class WorkedWith extends React.Component {
                 <div className="workwith">
                     <div className="logos">
                     {(typeof(this.state.partners.postslist) != 'undefined')?
-                        <OwlCarousel className="owl-theme" loop margin={0}>
+                        <OwlCarousel className="owl-theme" {...this.state.options} >
                             {this.state.partners.postslist.map(partner => 
                             <a className={"item"} key={partner.id} href={partner.shortstory} target="_blank" alt={partner.title}><img className="svg" src={partner.thumb_image} /></a>
                             )}

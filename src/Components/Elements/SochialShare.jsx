@@ -36,7 +36,7 @@ class SochialShare extends React.Component {
                         <li><a className="facebook" onClick={(e) => this.sochialShare('https://www.facebook.com/sharer/sharer.php?u=', e)} alt="Share On Facebook" ><span className="icons icon-facebook"></span> </a></li>
                         <li><a className="twitter" onClick={(e) => this.sochialShare('https://twitter.com/home?status=', e)} alt="Share On Twitter" ><span className="icons icon-twitter"></span></a></li>
                         <li><a className="google" onClick={(e) => this.sochialShare('https://plus.google.com/share?url=', e)}  alt="Share On Google+"><span className="icons icon-google"></span></a></li>
-                        <li><a className="vkontakte"  onClick={(e) => this.sochialShare('http://vkontakte.ru/share.php?url=', e)} alt="Share On VKontakte"><span className="icons icon-vkontakte"></span></a></li>
+                        <li><a className="vkontakte"  onClick={(e) => this.sochialShare('http://vkontakte.ru/share.php?url=', e)} alt="Share On VKontakte"><span className="icons icon-vk"></span></a></li>
                         <li><a className="linkedin"  onClick={(e) => this.sochialShare('https://www.linkedin.com/shareArticle?mini=true&url=', e)} alt="Share On Linkedin" ><span className="icons icon-linkedin"></span></a></li>
                     </ul>
                 </div>
